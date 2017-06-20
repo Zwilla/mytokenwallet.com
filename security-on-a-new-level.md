@@ -73,6 +73,7 @@ https://MyEtherWallet.com
 * https://stackoverflow.com/questions/41218507/violation-long-running-javascript-task-took-xx-ms
 * http://browserhacks.com/
 * https://www.w3.org/TR/SRI/
+* https://httpd.apache.org/docs/trunk/mod/mod_ratelimit.html
 ***
 
 ## Research
@@ -91,6 +92,7 @@ https://MyEtherWallet.com
 * http://www.askapache.com/htaccess/
 * https://mitmproxy.org/
 * http://www.adambarth.com/papers/2009/barth-weinberger-song.pdf
+* https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29
 
 ## Browsers
 * [Safari Beta](https://secure-appldnld.apple.com/STP/091-17755-20170613-810B2272-A1AF-4825-8E43-ADF9E09D0B20/SafariTechnologyPreview.dmg)
