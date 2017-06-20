@@ -1,6 +1,6 @@
 # No choice on security and compatibility
 
-If you redirected to this page, then use one of following browsers
+If you were redirected to this page, then use one of following browsers
 
 * [Brave Browser](https://brave.com/downloads.html)
 * [Mozilla FireFox](https://www.mozilla.org/de/firefox/new/?scene=2)
