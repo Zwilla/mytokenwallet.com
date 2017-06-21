@@ -1,3 +1,7 @@
+# Curent State:
+* Testing and bugfixing, but it works as MEW it did.
+* Working on Angular.js CSP security 
+
 # MyTokenWallet.com
 
 * What is MyTokenWallet?
@@ -18,6 +22,7 @@ Use my website behind such a mitm firewall! Ohh, what's that:
 
 Wondering? How could it possible to access online banking behind such a mitm firewall or proxy?
 
+Let me know, if you have issues. Happy testing. 
 more later,,,,,
 
 ## TOC My Token Wallet
