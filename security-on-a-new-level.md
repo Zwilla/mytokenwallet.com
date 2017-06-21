@@ -93,6 +93,10 @@ https://MyEtherWallet.com
 * https://mitmproxy.org/
 * http://www.adambarth.com/papers/2009/barth-weinberger-song.pdf
 * https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29
+   * https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet
+   * https://www.tunetheweb.com/security/http-security-headers/server-header/
+   * https://scotthelme.co.uk/hardening-your-http-response-headers/#removingheaders
+   * 
 
 ## Browsers
 * [Safari Beta](https://secure-appldnld.apple.com/STP/091-17755-20170613-810B2272-A1AF-4825-8E43-ADF9E09D0B20/SafariTechnologyPreview.dmg)
@@ -225,6 +229,22 @@ https://MyEtherWallet.com
    * http://www.office.xerox.com/userdoc/FAM_O2/driverhelp/secure_print_only.html
    * https://en.wikipedia.org/wiki/Security_printing
    * http://kourge.net/projects/regexp-unicode-block
+
+## fixing errors
+* server certificate verification failed. CAfile: /etc/ssl/certs/ca-certificates.crt CRLfile: none
+   * new cron job: sudo update-ca-certificates (every hour)
+   *     update --fix-missing
+   *     sudo apt-get install --reinstall ca-certificates
+   *     sudo mkdir /usr/local/share/ca-certificates/cacert.org
+   *     sudo wget -P /usr/local/share/ca-certificates/cacert.org http://www.cacert.org/certs/root.crt http://www.cacert.org/certs/class3.crt
+   *     sudo update-ca-certificates
+   *     git config --global http.sslCAinfo /etc/ssl/certs/ca-certificates.crt
+
+* https://docs.angularjs.org/api/ng/directive/ngCsp#
+* https://docs.angularjs.org/guide/security
+* https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json
+* 
+
 
 
 Content available under the
