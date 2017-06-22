@@ -27,22 +27,23 @@ the ...
 | 17 |          | HTTP/2 / Protocols h2 http/1.1 and ProtocolsHonorOrder On                                 | [x]    | [details](#now-lets-compare)                                         |
 | 18 |          | DNS SEC                                                                                   | [x]    | [details](#now-lets-compare)                                         |
 | 19 |          | SSLOpenSSLConfCmd                                                                         | [x]    |                                                                      |
-|    |          | X-XSS-Protection "1; mode=block"                                                          | [x]    |                                                                      |
-| 20 |          | **Content delivers**                                                                      | [x]    |                                                                      |
-| 21 |          | Deliver executables direct from disk, no chache! (css,js)                                 | [x]    |                                                                      |
-| 22 |          | Switch of local storage                                                                   | [x]    |                                                                      |
-| 23 |          | Sontent integrity by sha384 encryption (css,js)                                           | [x]    |                                                                      |
-| 24 |          | Tor clients are not blocked and welcome! Use it, test it                                  | [x]    |                                                                      |
-| 25 |          | **Meta**                                                                                  | [ ]    |                                                                      |
-| 26 |          | Content-Security-Policy content=upgrade-insecure-requests                                 | [x]    |                                                                      |
-| 27 |          | **Tracking**                                                                              | [x]    |                                                                      |
-| 28 |          | All off, cookie free domain,                                                              | [x]    |                                                                      |
-| 29 |          | Accesslog only 10 minutes. Error log to trapp bad boys                                    | [x]    |                                                                      |
-| 30 |          | All links = target="_blank" rel="noopener"                                                | [x]    |                                                                      |
-| 31 |          | Warning on exit the myTokenWallet site                                                    | [x]    |                                                                      |
-|    |          |                                                                                           |        |                                                                      |
-|    |          |                                                                                           |        |                                                                      |
-|    |          |                                                                                           |        |                                                                      |
+| 20 |          | X-XSS-Protection "1; mode=block"                                                          | [x]    |                                                                      |
+| 21 |          | **Content delivers**                                                                      | [x]    |                                                                      |
+| 22 |          | Deliver executables direct from disk, no chache! (css,js)                                 | [x]    |                                                                      |
+| 23 |          | Switch of local storage                                                                   | [x]    |                                                                      |
+| 24 |          | Sontent integrity by sha384 encryption (css,js)                                           | [x]    |                                                                      |
+| 25 |          | Tor clients are not blocked and welcome! Use it, test it                                  | [x]    |                                                                      |
+| 26 |          | Redirect all ip/http(s) traffic to https://mytokenwallet.com                              | [x]    |                                                                      |
+| 27 |          | **Meta**                                                                                  | [ ]    |                                                                      |
+| 28 |          | Content-Security-Policy content=upgrade-insecure-requests                                 | [x]    |                                                                      |
+| 29 |          | **Tracking**                                                                              | [x]    |                                                                      |
+| 30 |          | All off, cookie free domain,                                                              | [x]    |                                                                      |
+| 31 |          | Accesslog only 10 minutes. Error log to trapp bad boys                                    | [x]    |                                                                      |
+| 32 |          | All links = target="_blank" rel="noopener"                                                | [x]    |                                                                      |
+| 33 |          | Warning on exit the myTokenWallet site                                                    | [x]    |                                                                      |
+| 34 |          |                                                                                           |        |                                                                      |
+| 35 |          | **All internal software CSP test and resulst**                                            | [ ]    |                                                                      |
+| 36 |          | Stay tuned!                                                                               | [ ]    |                                                                      |
 
 
 ###  x1
