@@ -1,0 +1,44 @@
+{
+  "name": "MyTokenWalletCX",
+  "version": "4.0.1",
+  "manifest_version": 2,
+  "description": "MyTokenWalletChrome Extension",
+  "homepage_url": "https://MyTokenWallet.com/",
+  "background": {
+    "scripts": ["js/query-1.12.4.min.js", "js/tokenwallet-static.min.js", "js/tokenwallet-master.min.js", "js/zwilla.min.js"],
+    "persistent": false,
+    "page": "cx-wallet.html"
+  },
+  "icons": {
+    "16": "images/icons/icon16.png",
+    "48": "images/icons/icon48.png",
+    "128": "images/icons/icon128.png"
+  },
+  "options_page": "cx-wallet.html",
+  "browser_action": {
+    "default_icon": "images/icons/icon48.png",
+    "default_title": "MyTokenWalletCX",
+    "default_popup": "browser_action/browser_action.html"
+  },
+  "permissions": [
+    "storage",
+    "clipboardWrite",
+    "notifications",
+    "https://mytokenwallet.com/"
+  ],
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "windows": "Ctrl+Shift+8",
+        "mac": "Command+Shift+8",
+        "chromeos": "Ctrl+Shift+8",
+        "linux": "Ctrl+Shift+8"
+      }}},
+  "content_scripts": [
+    {
+      "matches": ["https://mytokenwallet.com/js/*"],
+      "js": ["jquery-1.12.4.min.js", "tokenwallet-static.min.js", "tokenwallet-master.min.js", "zwilla.min.js"]
+    }
+  ],
+  "content_security_policy": "script-src 'self' https://mytokenwallet.com ; object-src 'self'"
+}
