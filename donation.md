@@ -1,4 +1,10 @@
-# Donation to us 
+![Security Tested by them](https://mytokenwallet.com/images/SiteSecutiry-MyTokenWallet.com.png)
+
+Donations for running this high-security environment !
+* ETH: [0xD78ec516C31A0fcd22D3CC6DC454FB87d686444e](https://www.mytokenwallet.com/#send-transaction)
+* BTC: [19KoacYJn4zwNU5u2XVgbUDGLZytuD3uA7](https://www.coinbase.com/checkouts/e8a5a4c74c651d4c4f8db10f8f9ad6c3)
+
+# Donate to us 
 We are a legal company and if you want to support us send as much you can.
 You will get (if you want):
 
