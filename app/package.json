@@ -1,0 +1,13 @@
+{
+    "name": "MyTokenWallet",
+    "version": "4.0.1",
+    "description": "An NPM dist of MyTokenWallet. For easier downloading & updating via CLI.",
+    "author": "MyTokenWallet",
+    "license": "MIT",
+    "devDependencies": {
+        "open": "latest"
+    },
+    "bin": {
+        "mtw": "bin/startMTW.js"
+    }
+}
