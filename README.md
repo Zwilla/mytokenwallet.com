@@ -1,3 +1,4 @@
+![Security Tested by them](https://mytokenwallet.com/images/SiteSecutiry-MyTokenWallet.com.png)
 # Curent State:
 * Testing and bugfixing, but it works as MEW it did.
 * Working on Angular.js CSP security 
