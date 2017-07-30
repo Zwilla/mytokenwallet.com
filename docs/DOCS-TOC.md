@@ -7,3 +7,6 @@
 
 ## Trezor / Ledger
 * [Trezor_Ledger_different_address_snding_from](Trezor_Ledger_different_address_snding_from.md)
+
+## Sending Offline
+* [Is_the_send_ether_and_tokens_page_offline](Is_the_send_ether_and_tokens_page_offline.md)
