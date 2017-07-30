@@ -14,4 +14,5 @@ Real generate online, but unlock and access your wallet is pure offline!
 
 Test it and let me know how you find this?!
 
-thx
+***
+[back to TOC](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/DOCS-TOC.md)
