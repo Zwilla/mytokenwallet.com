@@ -67,4 +67,6 @@ We now provide users with the ability to enter the address and it auto-populate 
 * That's it. You successfully made a new pull request! Tell all your friends.
 * We will now review it and pull it in and it will be made live on the site. We may also ask you questions if something is confusing for whatever reason.
 
+***
+[back to TOC](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/DOCS-TOC.md)
 
