@@ -21,9 +21,7 @@ to the 'Checking your Ethereum Wallet Balance' post!
 
 3. Enter the Contract Address in the 'Address' field, the Token Symbol
    in the 'Token Symbol' field, and the number of decimals the token
-   goes back to. For this example, we will use the vSlice token. I
-   grabbed this information from their site, specifically this post:
-   '[**Checking vSlice Balance**](https://blog.vdice.io/checking-vslice-balance/)'
+   goes back to. For this example, we will use the vSlice token.
    ![](https://i1.wp.com/blockchaindk.com/wp-content/uploads/2017/02/Custom-Token-Fields-with-Information-Entered.png?fit=616%2C524&ssl=1)
 
 4. After entering the above information, click ' **Save** ' and that is
