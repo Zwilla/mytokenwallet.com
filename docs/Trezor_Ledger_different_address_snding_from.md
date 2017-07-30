@@ -39,4 +39,7 @@ Client Side - Mnemonic Phrase Wallet Generator for many Coins like:
 * SLM
 * VIA
 * XRP
+
+
 ***
+[back to TOC](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/DOCS-TOC.md)
