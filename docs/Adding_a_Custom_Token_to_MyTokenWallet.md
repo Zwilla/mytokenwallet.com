@@ -38,3 +38,6 @@ companies will make it easy to find. Now go out and add the hundreds of
 custom tokens and collect em all!
 
 For discussion, how many Tokens have you added and what are they?
+
+***
+[back to TOC](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/DOCS-TOC.md)
