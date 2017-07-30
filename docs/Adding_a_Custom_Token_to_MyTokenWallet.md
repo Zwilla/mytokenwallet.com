@@ -1,5 +1,5 @@
 Now that you have a Wallet and know how to check the balance through
-using **MyTokenWallet** , let's learn how to add a custom Ethereum
+using [**MyTokenWallet**](https://myTokenWallet.com/) , let's learn how to add a custom Ethereum
 Token! To be clear, we will be adding a Token someone has already
 created on the Ethereum Blockchain, not actually creating a brand new
 token. We will cover creating custom Tokens in a future post.
