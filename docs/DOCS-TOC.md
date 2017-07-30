@@ -1,4 +1,4 @@
-DOCS Overview
+# DOCS Overview
 
 ## TOKENS
 * [Adding_a_Custom_Token_to_MyTokenWallet](Adding_a_Custom_Token_to_MyTokenWallet.md)
