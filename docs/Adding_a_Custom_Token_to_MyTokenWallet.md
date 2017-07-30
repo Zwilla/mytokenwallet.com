@@ -4,7 +4,7 @@ Token! To be clear, we will be adding a Token someone has already
 created on the Ethereum Blockchain, not actually creating a brand new
 token. We will cover creating custom Tokens in a future post.
 
-Head on over to [**MyTokenWallet**](https://myTokenWallet.com/)and
+Head on over to [**MyTokenWallet**](https://myTokenWallet.com/) and
 go to the ' **View Wallet Info** ' section. Unlock your wallet and then
 follow the steps below. If you are unsure about this process, refer back
 to the 'Checking your Ethereum Wallet Balance' post!
