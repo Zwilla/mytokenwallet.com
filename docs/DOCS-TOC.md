@@ -13,3 +13,6 @@
 
 ## Sending Offline
 * [Is_the_send_ether_and_tokens_page_offline](Is_the_send_ether_and_tokens_page_offline.md)
+
+## Transactions
+* [How_can_I_check_on_the_status_of_my_TX](How_can_I_check_on_the_status_of_my_TX.md)
