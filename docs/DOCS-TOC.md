@@ -16,3 +16,6 @@
 
 ## Transactions
 * [How_can_I_check_on_the_status_of_my_TX](How_can_I_check_on_the_status_of_my_TX.md)
+
+## Keys: Private Public HIDDEN
+[How_to_import_a_plain_private_key_into_geth_or_Mist](How_to_import_a_plain_private_key_into_geth_or_Mist.md)
