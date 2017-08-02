@@ -1,7 +1,7 @@
 ![Security Tested by them](https://mytokenwallet.com/images/SiteSecutiry-MyTokenWallet.com.png)
 
 ## [DOCS OVERVIEW](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/DOCS-TOC.md)
-* [current Security Wanings](1-Security-Warnings.md)
+* [current Security Wanings](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/1-Security-Warnings.md)
 
 ## Donations for running this high-security environment !
 * ETH: [0xD78ec516C31A0fcd22D3CC6DC454FB87d686444e](https://www.mytokenwallet.com/#send-transaction)
