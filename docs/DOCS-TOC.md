@@ -1,5 +1,8 @@
 # DOCS Overview
 
+## NEW FEATURES
+* [40 new features](https://github.com/Zwilla/mytokenwallet.com/blob/master/New_Features_on_MyTokenWallet.md)
+
 ## TOKENS
 * [Adding_a_Custom_Token_to_MyTokenWallet](Adding_a_Custom_Token_to_MyTokenWallet.md)
 * [How_do_I_send_tokens_and_add_custom_tokens](How_do_I_send_tokens_and_add_custom_tokens.md)
@@ -19,3 +22,6 @@
 
 ## Keys: Private Public HIDDEN
 [How_to_import_a_plain_private_key_into_geth_or_Mist](How_to_import_a_plain_private_key_into_geth_or_Mist.md)
+
+## YouTube MTW Learning Center
+* [MTW Learning Center](https://goo.gl/z6P1ec)
