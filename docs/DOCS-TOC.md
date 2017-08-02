@@ -2,6 +2,7 @@
 
 ## NEW FEATURES
 * [40 new features](https://github.com/Zwilla/mytokenwallet.com/blob/master/New_Features_on_MyTokenWallet.md)
+* [current Security Wanings](1-Security-Warnings.md)
 
 ## TOKENS
 * [Adding_a_Custom_Token_to_MyTokenWallet](Adding_a_Custom_Token_to_MyTokenWallet.md)
