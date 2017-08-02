@@ -43,13 +43,21 @@
 | 33      | Password Manager Access possible                                                                  | no        | YES               |
 | 34      | Prevent of Copy, Pest and Cut during online connection (Password and Keys)                        | no        | YES               |
 | 35      | Prevent of Context-Menu during online connection (QR-CODE)                                        | no        | YES               |
-| 36      |                                                                                                   |           |                   |
-| 37      |                                                                                                   |           |                   |
-| 38      |                                                                                                   |           |                   |
-| 39      |                                                                                                   |           |                   |
-| 40      |                                                                                                   |           |                   |
+| 36      | New [Ledger Wallet](https://www.ledgerwallet.com/r/07c5) API integration                          | no        | YES               |
+| 37      | Update on [Trezor Wallet](https://trezor.io/?a=bitcoins-today.com)  Api                           | no        | YES               |
+| 38      | Trusted kernel on building and compiling MyTokenWallet                                            | ???       | YES               |
+| 39      | QR-Code scanner                                                                                   | no        | YES! paid service |
+| 40      | Guided tour for newbies integrated                                                                | no        | YES               |
+
+
+<a rel='nofollow' href='http://www.qrcode-generator.de' border='0'
+style='cursor:default'><img
+src='https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2FmyTokenWallet.com&chs=180x180&choe=UTF-8&chld=L|2'
+alt=''></a> https://myTokenWallet.com 'scan this code to open MTW on
+your smartphone'
 
 ***
+
 * Discover more security:
 * [Security_and_Privacy_tests_and_results](https://github.com/Zwilla/mytokenwallet.com/blob/master/Security_and_Privacy_tests_and_results.md)
 * [New level on security for your Crypto Coin Walltes](https://github.com/Zwilla/mytokenwallet.com/blob/master/security-on-a-new-level.md)
