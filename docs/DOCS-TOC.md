@@ -25,3 +25,18 @@
 
 ## YouTube MTW Learning Center
 * [MTW Learning Center](https://goo.gl/z6P1ec)
+
+***
+
+## MyTokenWallet Security
+* [New level on security for your Crypto Coin Walltes](https://github.com/Zwilla/mytokenwallet.com/blob/master/security-on-a-new-level.md)
+* [Security and Privacy - best Practices tests and results](https://github.com/Zwilla/mytokenwallet.com/blob/master/Security_and_Privacy_tests_and_results.md)
+* [Source code for MyTokenWallet](https://github.com/Zwilla/mytokenwallet.com/blob/master/source-code-download.md)
+* [No choice on security and compatibility](https://github.com/Zwilla/mytokenwallet.com/blob/master/browser-compatibility.md)
+
+## Donations
+* [donate and get an invoice!](https://github.com/Zwilla/mytokenwallet.com/blob/master/donation.md)
+
+## official README
+* [The README](https://github.com/Zwilla/mytokenwallet.com/blob/master/README.md)
+* [LICENSE and WARRANTY](https://github.com/Zwilla/mytokenwallet.com/blob/master/LICENSE)
