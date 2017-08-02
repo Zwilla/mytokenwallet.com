@@ -13,8 +13,8 @@
 | 08      | Password Strengh Checker  [link](https://mytokenwallet.com/pwStrength-meter.html)                 | no        | YES               |
 | 09      | Automatic language detection                                                                      | no        | YES               |
 | 10      | **Google Translate Hacking the Wallet Software possible!**    **yes=bad**                         | yes       | NO                |
-|         | Try translate [MEW](https://goo.gl/TJRXRf)                                                        | hack able |                   |
-|         | VS [MTW](https://goo.gl/crWsPT)                                                                   | no        |                   |
+|         | Try translate [MEW](https://goo.gl/TJRXRf)  - Issue opened [link](https://goo.gl/MahDV5)          | hack able |                   |
+|         | VS [MTW](https://goo.gl/crWsPT)                                                                   |           | NOT               |
 |         | Man in the midle attack possible - above the proof - Google is changing the code and it works!    | WARNING   |                   |
 | **NO.** | **New Features - compare**                                                                        | **mew**   | **MTW**           |
 | 11      | Zwilla's Toolbox Mnemonic Code Converter  [link](https://mytokenwallet.com/bip39.html)            | no        | YES               |
@@ -49,6 +49,7 @@
 | 38      | Trusted kernel on building and compiling MyTokenWallet                                            | ???       | YES               |
 | 39      | QR-Code scanner                                                                                   | no        | YES! paid service |
 | 40      | Guided tour for newbies integrated                                                                | no        | YES               |
+| 41      | overall browser chaching OFF! It is a security risk and I warn if it is on                        | no        | YES               |
 
 
 <a rel='nofollow' href='http://www.qrcode-generator.de' border='0'
