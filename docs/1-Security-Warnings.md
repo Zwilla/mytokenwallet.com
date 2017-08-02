@@ -12,6 +12,8 @@
 * providing the **embedded type** of MyTokenWallet on any ICO is a NO-GO!!!
 * never override the offline / online mode by hacking your self
 * check your password first at our new [PW Strengh Cecker](https://www.mytokenwallet.com/pwStrength-meter.html)
+* Do not use ONLINE https://myetherwallet.com - Man in the Middle Attacks are possible ! Proof here: 
+* MEW issue opened [link](https://goo.gl/MahDV5)
 
 
 ***
