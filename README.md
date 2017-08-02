@@ -8,11 +8,13 @@
 
 ## Current State:
 * Testing and bugfixing, but it works as MEW it did.
-* Working on Angular.js CSP security 
+* Working on Angular.js CSP security
+* integrating every commit from MEW - every day = 100% pari!
+* [MyTokenWallet](https://mytokenwallet.com) is not **40 new features** now ahead of MEW
 
 ## MyTokenWallet.com
 
-* What is MyTokenWallet?
+* What is [MyTokenWallet](https://mytokenwallet.com) ?
 It is a high security fork of MyEtherWallet. Paranoid Version.
 
 * Trust or not, it's your choice!
