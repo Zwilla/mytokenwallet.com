@@ -34,3 +34,4 @@ Let me know, if you have issues. Happy testing.
 more later,,,,,
 
 ## TOC My Token Wallet
+[TOC MyTokenWallet Docs](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/DOCS-TOC.md)
