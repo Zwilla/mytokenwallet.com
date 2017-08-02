@@ -15,6 +15,7 @@
 | 10      | **Google Translate Hacking the Wallet Software possible!**    **yes=bad**                         | yes       | NO                |
 |         | Try translate [MEW](https://goo.gl/TJRXRf)                                                        | hack able |                   |
 |         | VS [MTW](https://goo.gl/crWsPT)                                                                   | no        |                   |
+|         | Man in the midle attack possible - above the proof - Google is changing the code and it works!    | WARNING   |                   |
 | **NO.** | **New Features - compare**                                                                        | **mew**   | **MTW**           |
 | 11      | Zwilla's Toolbox Mnemonic Code Converter  [link](https://mytokenwallet.com/bip39.html)            | no        | YES               |
 | 12      | automatic PURE OFFLINE MODE at start up!                                                          | no        | YES               |
