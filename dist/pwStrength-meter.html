@@ -1,0 +1,116 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Zwilla&apos;s Password Strength Checker (MyTokenWallet-Toolbox)</title>
+
+  <meta name="author" content="Miguel Padilla">
+  <meta name="viewport" content="initial-scale=1">
+  <meta http-equiv="cache-control" content="max-age=0">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  <meta http-equiv="expires" content="Wed, 15 Apr 1970 8:47:00 GMT">
+  <meta http-equiv="pragma" content="no-cache">
+
+  <link rel="stylesheet" href="css/pwmeter.css" crossorigin="use-credentials" integrity="sha384-F4bUCP8/3F8sB9smUhoydNE/rQK0LAtjRbddnliBPUu1A7LYC3BfRKl7quSQIx/a">
+
+  <script type="text/javascript" src="js/b39-zxcvbn.js" crossorigin="use-credentials" integrity="sha384-ASmeUuILt/Ap5mEI/x5r+HHfzL8L0iqc1FaBTQ+LQOz5NnsZ3Hf600a62GmBqB+h"></script>
+
+  <script type="text/javascript" src="js/pwmeter.js" crossorigin="use-credentials" integrity="sha384-5FWJBi258N+1ad0vbJoTK3OsF0dcj61Yiyca5uISdlGxnRlPV2jK9RqnhjJyXWWf"></script>
+
+</head>
+<body>
+
+<div class="main">
+
+  <div>
+    <h1>Zwilla&apos;s Password Strength Checker</h1>
+
+
+  </div>
+
+  <label for="password">Password to test:</label>
+
+  <input type="text" name="password" id="password" onchange="checkPassword(document.getElementById(&apos;password&apos;).value, false); return true;" onkeypress="this.onchange();" oninput="this.onkeypress();">
+
+  <pre id="output" class="strength1"></pre>
+
+  <div><a href="https://mytokenwallet.com">(https://mytokenwallet.com)</a></div>
+  <ul>
+    <li>DO NOT USE THIS PAGE ONLINE !!!</li>
+    <li><a href="https://mytokenwallet.com">DOWNLOAD THE TOOLBOX AND</a></li>
+    <li>USE IT ONLY ON AN OFFLINE COMPUTER</li>
+    <li>SHARE YOUR PASSWORDS ON FACEBOOK</li>
+    <li>POST YOUR PASSWORD TO ALL YOUR CONTACTS</li>
+    <li>PUBLISH YOUR PW ON NEWSPAPERS</li>
+    <li>ON A PAPER UNDER YOUR KEYBORAD</li>
+    <li>SEND ME 1BTC EVERY DAY</li>
+  </ul>
+
+</div>
+
+
+</body>
+</html>
+
+
+
+<footer>
+  <div class="container">
+    <p>
+      <a href="https://MyTokenWallet.com" target="_blank" rel="noopener">MyTokenWallet.com</a>:
+
+      Open-Source, client-side tool for easily &amp; securely interacting with the Ethereum network.
+
+      Ported to MTW by
+      <a aria-label="zwilla&apos;s github" href="https://github.com/zwilla/mytokenwallet" target="_blank" rel="noopener">zwilla</a>
+      &amp;
+      &#xB7;
+      <a href="https://MyTokenWallet.com" target="_blank" rel="noopener" aria-label="my Token Wallet.com">
+        MyTokenWallet.com
+      </a>
+      &#xB7;
+      <a href="https://github.com/zwilla/mytokenwallet" target="_blank" rel="noopener" aria-label="my Token Wallet github">
+        Github
+      </a>
+      &#xB7;
+      <a href="https://myetherwallet.herokuapp.com/" target="_blank" rel="noopener" aria-label="join our slack">
+        Slack
+      </a>
+      &#xB7;
+      <a href="https://twitter.com/myetherwallet" target="_blank" rel="noopener" aria-label="twitter">
+        Twitter
+      </a>
+      &#xB7;
+      <a href="https://www.facebook.com/MyTokenWallet/" target="_blank" rel="noopener" aria-label="facebook">
+        Facebook
+      </a>
+      &#xB7;
+      <a href="mailto:save@MyTokenWallet.com" target="_blank" rel="noopener" aria-label="email save@MyTokenWallet.com">
+        Email
+      </a>
+
+    <div class="nav-scroll">
+      <ul class="nav-inner">
+        
+        <li ng-repeat="tab in tabNames track by $index" class="nav-item {{tab.name}}" ng-class="{active: $index==gService.currentTab}" ng-show="tab.mtw" ng-click="tabClick($index)"><a tabindex="0" aria-label="nav item: {{tab.name | translate}}" translate="{{tab.name}}"></a>
+        </li>
+        
+        
+          <a href="help.html" target="_blank" rel="noopener">&#x1F198;</a>
+        <a href="security.html" target="_blank" rel="noopener">&#x1F46E;</a>
+        <a href="bulkGenerate.html" target="_blank" rel="noopener">&#x1F4C3;&#x1F4B3;</a>
+        <a href="signMsg.html" target="_blank" rel="noopener">&#x1F3AB;&#x1F50F;</a>
+          <a href="embedded.html" target="_blank" rel="noopener">&#x1F530;</a>
+        <a href="support.html" target="_blank" rel="noopener">&#x260E;&#xFE0F;</a>
+          <img href="https://github.com/Zwilla/mytokenwallet.com/blob/master/Security_and_Privacy_tests_and_results.md" class="img-fill" alt="MyTkoenWallet Site Security" title="Site Security tested with" src="images/SiteSecutiry-MyTokenWallet.com.png">
+      </ul>
+    </div>
+    </p></div>
+  </footer>
+
+
+

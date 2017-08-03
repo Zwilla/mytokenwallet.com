@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="urlset">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="url" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="loc">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="https://mytokenwallet.com/"/>
+                    <xs:enumeration value="https://mytokenwallet.com/#send-transaction"/>
+                    <xs:enumeration value="https://mytokenwallet.com/#swap"/>
+                    <xs:enumeration value="https://mytokenwallet.com/#offline-transaction"/>
+                    <xs:enumeration value="https://mytokenwallet.com/#contracts"/>
+                    <xs:enumeration value="https://mytokenwallet.com/#ens"/>
+                    <xs:enumeration value="https://mytokenwallet.com/#check-tx-status"/>
+                    <xs:enumeration value="https://mytokenwallet.com/#view-wallet-info"/>
+                    <xs:enumeration value="https://mytokenwallet.com/signmsg.html"/>
+                    <xs:enumeration value="https://mytokenwallet.com/helpers.html"/>
+                    <xs:enumeration value="https://mytokenwallet.com/security.html"/>
+                    <xs:enumeration value="https://mytokenwallet.com/bip39.html"/>
+                    <xs:enumeration value="https://mytokenwallet.com/index-guide.html"/>
+                    <xs:enumeration value="https://mytokenwallet.com/embedded.html"/>
+                    <xs:enumeration value="https://mytokenwallet.com/mywallet.html"/>
+                    <xs:enumeration value="https://mytokenwallet.com/ledger-wallet.html"/>
+                    <xs:enumeration value="https://mytokenwallet.com/bulkGenerate.html"/>
+                    <xs:enumeration value="https://mytokenwallet.com/pwStrength-meter.html"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element type="xs:string" name="lastmod"/>
+              <xs:element name="priority">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="1.00"/>
+                    <xs:enumeration value="0.9"/>
+                    <xs:enumeration value="0.5"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

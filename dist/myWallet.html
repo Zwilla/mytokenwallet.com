@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mtwApp" ng-strict-di="">
+<head>
+  <meta charset="utf-8">
+  <title>MyTokenWallet: Open Source JavaScript Client-Side Ether Wallet</title>
+  <link rel="canonical" href="https://MyTokenWallet.com">
+  <meta name="description" content="Ether Wallet: Open Source JavaScript Client-Side Ether Wallet">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/tokenwallets-master.min.css" integrity="sha384-okfxkQ8tW50iB4y+BGhPci4YfXEznA55bfE9gKdJp9cHNqzBDlTtiKQxftfOBqfR" crossorigin="anonymous">
+  <script type="text/javascript" src="js/tokenwallet-static.min.js" integrity="sha384-fwXLzEBdZ+5W/I+AXuFeaRp5ju6dgxnwVjtrmOFU00OT9gNezNnBsZ4hNpL2fN4h" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/tokenwallet-master.min.js" integrity="sha384-JO14pCBFNPoETUIkkTHHJLAP/mv12Hw+/NCYmgVieUJoyEzOLaSfRVFl03Htfqzr" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/zwilla.min.js" integrity="sha384-yNKiJx8WavqpJA7k+NdF2a3hB9DkGR4VijcZQt8AdfWfN54jyaTw2Jfbj6YxJmtB" crossorigin="anonymous"></script>
+  <link rel="apple-touch-icon" sizes="60x60" href="images/fav/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="images/fav/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="images/fav/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="images/fav/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/fav/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="images/fav/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="images/fav/favicon-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="images/fav/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="images/fav/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="images/fav/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="images/fav/manifest.json">
+  <link rel="shortcut icon" href="images/favicon.ico">
+  <meta name="msapplication-TileColor" content="#2e4868">
+  <meta name="msapplication-TileImage" content="images/fav/mstile-144x144.png">
+  <meta name="msapplication-config" content="images/fav/browserconfig.xml">
+  <meta name="theme-color" content="#2e4868">
+</head>
+
+<body>
+
+<div id="resultprivate" class="resultprivate1"></div>
+
+<header class="bg-gradient text-white">
+<section class="container text-center">
+  <a href="https://mytokenwallet.com/"><img src="images/logo-MyTokenWallet.png" height="50px" width="auto" alt="My Token Wallet" class="embedded-logo"></a>
+</section>
+</header>
+
+
+<section class="container" style="min-height: 50%" ng-controller="viewCtrl">
+
+    <!-- tab panes -->
+
+    <div class="tab-content">
+
+        <!-- My Wallet Page -->
+<main id="int_wallet_page" class="tab-pane active myWalletCtrl" ng-if="globalService.currentTab==globalService.tabs.myWallet.id" ng-controller="myWalletsCtrl" ng-cloak="">
+
+  <!-- Your Wallet Table -->
+  <h1 translate="NAV_YourWallets"> Your Wallets </h1>
+  <table class="table table-striped" id="tblwalletsmain">
+    <tr ng-repeat="twallet in allWallets track by $index">
+      <td width="10"><div class="addressIdenticon med" title="Address Indenticon" blockie-address="{{twallet.addr}}" watch-var="twallet"></div></td>
+      <td width="10">
+        <h2>{{twallet.nick}} </h2>
+        <span class="mono small">{{twallet.addr}}</span>
+      </td>
+      <td width="500" class="chrome-tokens">
+        <h3 class="text-success point" ng-show="!showLongBal" ng-dblclick="showLongBal=!showLongBal" title="{{twallet.balance}} (Double-Click)">{{twallet.balance|number}} ETH</h3>
+        <h3 class="text-success point" ng-show="showLongBal" ng-dblclick="showLongBal=!showLongBal">{{twallet.balance }} ETH</h3>
+        <span class="point" ng-repeat="token in twallet.tokens" ng-show="token.balance!=0 &amp;&amp; token.balance!=&apos;loading&apos;" ng-dblclick="showLongToken=!showLongToken" title="{{token.getBalance()}} (Double-Click)">
+          <strong ng-show="!showLongToken">{{token.getBalance()|number}} </strong>
+          <strong ng-show="showLongToken"> {{token.getBalance()}} </strong>
+          {{token.getSymbol()}} &#xA0;&#xA0;
+        </span>
+      </td>
+      <td width="100" class="text-center" style="white-space: nowrap">
+        <a class="mainWalletEdit" ng-click="editMWallet($index,&apos;wallet&apos;)"><img src="images/icon-edit.svg" title="Edit"></a>
+        <a class="text-warning mainWalletView" ng-click="viewMWallet($index,&apos;wallet&apos;)"><img src="images/icon-view.svg" title="View"></a>
+        <a class="mainWalletDelete text-danger" ng-click="deleteWalletMsg($index,&apos;wallet&apos;)"><img src="images/icon-remove-red.svg" title="Remove"></a>
+      </td>
+    </tr>
+  </table>
+  <!-- / Your Wallet Table -->
+
+
+  <!-- Watch Only Account Table -->
+  <section id="secWatchOnlyMain">
+    <h1 translate="MYWAL_WatchOnly"> Your Watch-Only Accounts </h1>
+    <table class="table table-striped" id="tblWatchOnlyMain">
+      <tr ng-repeat="twallet in allWatchOnly track by $index">
+        <td><div class="addressIdenticon med" title="Address Indenticon" blockie-address="{{twallet.addr}}" watch-var="twallet"></div></td>
+        <td>
+          <h2>{{twallet.nick}}</h2>
+          <span class="mono small"> {{twallet.addr}} </span>
+        </td>
+        <td class="chrome-tokens">
+          <h3 class="text-success point" ng-show="!showLongBal" ng-dblclick="showLongBal=!showLongBal" title="{{twallet.balance}} (Double-Click)">{{twallet.balance|number}} ETH</h3>
+          <h3 class="text-success point" ng-show="showLongBal" ng-dblclick="showLongBal=!showLongBal">{{twallet.balance }} ETH</h3>
+
+          <span class="point" ng-repeat="token in twallet.tokens" ng-show="token.balance!=0 &amp;&amp; token.balance!=&apos;loading&apos;" ng-dblclick="showLongToken=!showLongToken" title="{{token.getBalance()}} (Double-Click)">
+            <strong ng-show="!showLongToken">{{token.getBalance()|number}} </strong>
+            <strong ng-show="showLongToken"> {{token.getBalance()}} </strong>
+            &#xA0;{{token.getSymbol()}} &#xA0;&#xA0;
+          </span>
+        </td>
+         <td class="text-center"><a class="mainWalletDelete text-danger" ng-click="deleteWalletMsg($index,&apos;watchOnly&apos;)"><img src="images/icon-remove-red.svg" title="Remove"></a></td>
+      </tr>
+    </table>
+  </section>
+  <!-- / Watch Only Account Table -->
+
+
+  <!-- View Wallet Section -->
+  <section class="row" ng-show="wallet!=null" ng-controller="viewWalletCtrl">
+    <div class="col-sm-12 text-right" style="margin: 1rem 0;" ng-show="wallet!=null">
+      <a class="btn btn-warning" ng-click="resetWallet()" translate="MYWAL_Hide"> Hide Wallet Info </a>
+    </div>
+
+
+     <article class="col-sm-8 view-wallet-content">
+
+  <section class="block">
+    <div class="col-xs-11">
+      <div class="account-help-icon">
+        <img src="images/icon-help.svg" class="help-icon">
+        <p class="account-help-text" translate="x_AddessDesc">You may know this as your &quot;Account #&quot; or your &quot;Public Key&quot;. It&apos;s what you send people so they can send you ETH. That icon is an easy way to recognize your address.</p>
+        <h5 translate="x_Address">Your Address:</h5>
+      </div>
+      <label>
+        <input class="form-control" type="text" ng-value="wallet.getChecksumAddressString()" readonly="readonly">
+      </label>
+    </div>
+
+    <div class="col-xs-1 address-identicon-container">
+      <div class="addressIdenticon" title="Address Indenticon" blockie-address="{{wallet.getAddressString()}}" watch-var="wallet"></div>
+    </div>
+
+    <div class="col-xs-12" ng-show="showEnc">
+      <div class="account-help-icon">
+        <img src="images/icon-help.svg" class="help-icon">
+        <p class="account-help-text" translate="x_KeystoreDesc">This Keystore / JSON file matches the format used by Mist &amp; Geth so you can easily import it in the future. It is the recommended file to download and back up.</p>
+        <h5 translate="x_Keystore">Keystore/JSON File (Recommended &#x2022; Encrypted &#x2022; Mist/Geth Format)</h5>
+      </div>
+      <a class="btn btn-info btn-block" href="{{blobEnc}}" download="{{encFileName}}" translate="x_Download"> DOWNLOAD </a>
+      <a class="btn btn-info btn-block" href="{{blobEncSaf}}" download="{{encFileNameSaf}}"> SAFARI DOWNLOAD </a>
+    </div>
+
+    <div class="col-xs-12" ng-show="wallet.type==&apos;default&apos;">
+      <div class="account-help-icon">
+        <img stopccp="" src="images/icon-help.svg" class="help-icon">
+        <p class="account-help-text" translate="x_PrivKeyDesc">This is the unencrypted text version of your private key, meaning no password is necessary. If someone were to find your unencrypted private key, they could access your wallet without a password. For this reason, encrypted versions are typically recommended.</p>
+        <h5>
+          <span translate="x_PrivKey">Private Key (unencrypted)</span>
+        </h5>
+      </div>
+      <div class="input-group">
+        <input stopccp="" class="form-control no-animate" type="{{pkeyVisible ? &apos;text&apos; : &apos;password&apos;}}" ng-value="wallet.getPrivateKeyString()" readonly="readonly">
+        <span tabindex="0" aria-label="make private key visible" role="button" class="input-group-addon eye" ng-click="showHidePkey()"></span>
+      </div>
+    </div>
+
+
+    <div class="col-xs-12" ng-show="wallet.type==&apos;default&apos;">
+      <div class="account-help-icon">
+        <img src="images/icon-help.svg" class="help-icon">
+        <p class="account-help-text" translate="x_PrintDesc">ProTip: Click print and save this as a <strong>PASSWORD PROTECTED</strong> PDF, even if you do not own a printer!</p>
+        <h5 translate="x_Print">Print Paper Wallet:</h5>
+      </div>
+      <a class="btn btn-info btn-block" ng-click="printQRCode()" translate="x_Print">Print Paper Wallet</a>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="col-xs-6">
+      <h5 translate="x_Address">Your Address:</h5>
+      <div class="qr-code" qr-code="{{wallet.getChecksumAddressString()}}" watch-var="wallet" width="100%"></div>
+    </div>
+    <div class="col-xs-6">
+      <h5 ng-show="wallet.type==&apos;default&apos;">
+        <span translate="x_PrivKey">Private Key (unencrypted)</span>
+      </h5>
+      <div class="qr-pkey-container" ng-show="wallet.type==&apos;default&apos;">
+        <div class="qr-overlay" ng-show="!pkeyVisible"></div>
+        <div stopccp="" class="qr-code" qr-code="{{wallet.getPrivateKeyString()}}" watch-var="wallet" width="100%"></div>
+        <div class="input-group">
+
+            <input class="form-control no-animate" type="{{pkeyVisible ? &apos;text&apos; : &apos;password&apos;}}" ng-value="wallet.getPrivateKeyString()" readonly="readonly" style="display:none;width:0;height:0;padding:0">
+
+          <span tabindex="0" aria-label="make private key visible" role="button" class="input-group-addon eye" ng-click="showHidePkey()"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+    
+    
+  <section class="block" ng-show="wallet.type==&apos;default&apos;">
+      <main class="tab-pane active" ng-show="wallet!=null" ng-controller="signMsgCtrl">
+          <!-- Sign Message Panel
+<script src="js/ledger.min.js"></script>
+<script src="js/u2f-api.js"></script>
+-->
+<h2>
+    <a translate="NAV_SignMsg" ng-class="{ &apos;isActive&apos;: visibility==&apos;signView&apos; }" ng-click="setVisibility(&apos;signView&apos;)">
+        Sign Message </a>
+    or
+    <a translate="MSG_verify" ng-class="{ &apos;isActive&apos;: visibility==&apos;verifyView&apos; }" ng-click="setVisibility(&apos;verifyView&apos;)">
+        Verify Message </a>
+</h2>
+
+<article class="col-xs-12 clearfix" ng-switch="" on="visibility">
+
+    <!-- Sign Message Stuff -->
+    <section ng-switch-when="signView">
+
+        <!-- Message -->
+        <div class="account-help-icon">
+            <img src="images/icon-help.svg" class="help-icon">
+            <ul class="account-help-text">
+                <li translate="MSG_info2">Include your nickname and where you use the nickname so someone else cannot
+                    use it.
+                </li>
+                <li translate="MSG_info3">Include a specific reason for the message so it cannot be reused for a
+                    different purpose.
+                </li>
+            </ul>
+            <h5 translate="MSG_message"> Message </h5>
+        </div>
+
+
+        <textarea class="form-control" ng-model="signMsg.message" placeholder="This server is more secure than million others! Take a look to section: security!!! It is recommende to set a date here!!!" rows="5"></textarea>
+
+        <!-- Date -->
+        <div class="account-help-icon">
+            <img src="images/icon-help.svg" class="help-icon">
+            <p class="account-help-text" translate="MSG_info1">Include the current date so the signature cannot be
+                reused on a different date.</p>
+            <h5 translate="MSG_date"> Date </h5>
+        </div>
+        <input class="form-control" ng-model="signMsg.dateTime" type="text" placeholder="28 JUN 2017 00:32">
+
+        <!-- Sign Message Button -->
+        <a class="btn btn-info btn-block" ng-click="generateSignedMsg()" translate="NAV_SignMsg" ng-show="wallet!=null">
+            Sign Message </a>
+        <a class="btn btn-info btn-block" ng-click="scanLedger();generateSignedMsgLedger()" translate="NAV_SignMsgLedger" ng-show="wallet!=null">
+            Sign Message with ledger Wallet</a>
+        <a class="btn btn-info btn-block" ng-click="KillAllServiceWorker()" ng-show="wallet!=null">
+            Service Worker unregister</a>
+
+
+
+        <!-- Signed Message -->
+        <div ng-show="signMsg.signedMsg">
+            <h5 translate="MSG_signature"> Signature </h5>
+            <label>
+                <textarea style="width: 270%;" "="" class="form-control" rows="4" readonly title="Signature">{{signMsg.signedMsg}}</textarea>
+            </label>
+        </div>
+    </section>
+    <!-- / Sign Message Stuff -->
+
+
+    <!-- Verify Message Stuff -->
+    <section ng-switch-when="verifyView">
+        <!-- Signature -->
+        <h5 translate="MSG_signature"> Signature </h5>
+        <textarea class="form-control" ng-model="verifyMsg.signedMsg" rows="6" placeholder="{ &quot;address&quot;:&quot;0xA7DeFf12461661212734dB35AdE9aE7d987D648c&quot;,&quot;msg&quot;:&quot;This message was signed by kvhnuke | 28 NOV 2016 1:38AM&quot;,&quot;sig&quot;:&quot;0x2190fdf0a011863fed22050372088d08404eb7cae020b73f24cfeca967773b3867f53f1ec96baffbdc6ec9dd3ca7c2ba4eed19a500f65cb3c343e24091b0c4f21b&quot;}"></textarea>
+
+        <!-- Verify Signature Message Button -->
+        <a class="btn btn-info btn-block" ng-click="verifySignedMessage()" translate="MSG_verify" ng-show="verifyMsg.signedMsg!=&apos;&apos;"> Verify Message </a>
+
+
+    </section>
+    <!-- / Verify Message Stuff -->
+
+</article>
+<!-- / Sign Message Panel -->
+   
+      </main>
+  </section>
+    
+
+
+</article>
+
+<article class="col-sm-4">
+  <wallet-balance-drtv></wallet-balance-drtv>
+</article>
+
+     <article class="col-sm-8 view-wallet-content">
+
+  <section class="block">
+    <div class="col-xs-11">
+      <div class="account-help-icon">
+        <img src="images/icon-help.svg" class="help-icon">
+        <p class="account-help-text" translate="x_AddessDesc">You may know this as your &quot;Account #&quot; or your &quot;Public Key&quot;. It&apos;s what you send people so they can send you ETH. That icon is an easy way to recognize your address.</p>
+        <h5 translate="x_Address">Your Address:</h5>
+      </div>
+      <label>
+        <input class="form-control" type="text" ng-value="wallet.getChecksumAddressString()" readonly="readonly">
+      </label>
+    </div>
+
+    <div class="col-xs-1 address-identicon-container">
+      <div class="addressIdenticon" title="Address Indenticon" blockie-address="{{wallet.getAddressString()}}" watch-var="wallet"></div>
+    </div>
+
+    <div class="col-xs-12" ng-show="showEnc">
+      <div class="account-help-icon">
+        <img src="images/icon-help.svg" class="help-icon">
+        <p class="account-help-text" translate="x_KeystoreDesc">This Keystore / JSON file matches the format used by Mist &amp; Geth so you can easily import it in the future. It is the recommended file to download and back up.</p>
+        <h5 translate="x_Keystore">Keystore/JSON File (Recommended &#x2022; Encrypted &#x2022; Mist/Geth Format)</h5>
+      </div>
+      <a class="btn btn-info btn-block" href="{{blobEnc}}" download="{{encFileName}}" translate="x_Download"> DOWNLOAD </a>
+      <a class="btn btn-info btn-block" href="{{blobEncSaf}}" download="{{encFileNameSaf}}"> SAFARI DOWNLOAD </a>
+    </div>
+
+    <div class="col-xs-12" ng-show="wallet.type==&apos;default&apos;">
+      <div class="account-help-icon">
+        <img stopccp="" src="images/icon-help.svg" class="help-icon">
+        <p class="account-help-text" translate="x_PrivKeyDesc">This is the unencrypted text version of your private key, meaning no password is necessary. If someone were to find your unencrypted private key, they could access your wallet without a password. For this reason, encrypted versions are typically recommended.</p>
+        <h5>
+          <span translate="x_PrivKey">Private Key (unencrypted)</span>
+        </h5>
+      </div>
+      <div class="input-group">
+        <input stopccp="" class="form-control no-animate" type="{{pkeyVisible ? &apos;text&apos; : &apos;password&apos;}}" ng-value="wallet.getPrivateKeyString()" readonly="readonly">
+        <span tabindex="0" aria-label="make private key visible" role="button" class="input-group-addon eye" ng-click="showHidePkey()"></span>
+      </div>
+    </div>
+
+
+    <div class="col-xs-12" ng-show="wallet.type==&apos;default&apos;">
+      <div class="account-help-icon">
+        <img src="images/icon-help.svg" class="help-icon">
+        <p class="account-help-text" translate="x_PrintDesc">ProTip: Click print and save this as a <strong>PASSWORD PROTECTED</strong> PDF, even if you do not own a printer!</p>
+        <h5 translate="x_Print">Print Paper Wallet:</h5>
+      </div>
+      <a class="btn btn-info btn-block" ng-click="printQRCode()" translate="x_Print">Print Paper Wallet</a>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="col-xs-6">
+      <h5 translate="x_Address">Your Address:</h5>
+      <div class="qr-code" qr-code="{{wallet.getChecksumAddressString()}}" watch-var="wallet" width="100%"></div>
+    </div>
+    <div class="col-xs-6">
+      <h5 ng-show="wallet.type==&apos;default&apos;">
+        <span translate="x_PrivKey">Private Key (unencrypted)</span>
+      </h5>
+      <div class="qr-pkey-container" ng-show="wallet.type==&apos;default&apos;">
+        <div class="qr-overlay" ng-show="!pkeyVisible"></div>
+        <div stopccp="" class="qr-code" qr-code="{{wallet.getPrivateKeyString()}}" watch-var="wallet" width="100%"></div>
+        <div class="input-group">
+
+            <input class="form-control no-animate" type="{{pkeyVisible ? &apos;text&apos; : &apos;password&apos;}}" ng-value="wallet.getPrivateKeyString()" readonly="readonly" style="display:none;width:0;height:0;padding:0">
+
+          <span tabindex="0" aria-label="make private key visible" role="button" class="input-group-addon eye" ng-click="showHidePkey()"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+    
+  <section class="block" ng-show="wallet.type==&apos;default&apos;">
+      <main ng-controller="signMsgCtrl" ng-show="wallet!=null">
+          <!-- Sign Message Panel
+<script src="js/ledger.min.js"></script>
+<script src="js/u2f-api.js"></script>
+-->
+<h2>
+    <a translate="NAV_SignMsg" ng-class="{ &apos;isActive&apos;: visibility==&apos;signView&apos; }" ng-click="setVisibility(&apos;signView&apos;)">
+        Sign Message </a>
+    or
+    <a translate="MSG_verify" ng-class="{ &apos;isActive&apos;: visibility==&apos;verifyView&apos; }" ng-click="setVisibility(&apos;verifyView&apos;)">
+        Verify Message </a>
+</h2>
+
+<article class="col-xs-12 clearfix" ng-switch="" on="visibility">
+
+    <!-- Sign Message Stuff -->
+    <section ng-switch-when="signView">
+
+        <!-- Message -->
+        <div class="account-help-icon">
+            <img src="images/icon-help.svg" class="help-icon">
+            <ul class="account-help-text">
+                <li translate="MSG_info2">Include your nickname and where you use the nickname so someone else cannot
+                    use it.
+                </li>
+                <li translate="MSG_info3">Include a specific reason for the message so it cannot be reused for a
+                    different purpose.
+                </li>
+            </ul>
+            <h5 translate="MSG_message"> Message </h5>
+        </div>
+
+
+        <textarea class="form-control" ng-model="signMsg.message" placeholder="This server is more secure than million others! Take a look to section: security!!! It is recommende to set a date here!!!" rows="5"></textarea>
+
+        <!-- Date -->
+        <div class="account-help-icon">
+            <img src="images/icon-help.svg" class="help-icon">
+            <p class="account-help-text" translate="MSG_info1">Include the current date so the signature cannot be
+                reused on a different date.</p>
+            <h5 translate="MSG_date"> Date </h5>
+        </div>
+        <input class="form-control" ng-model="signMsg.dateTime" type="text" placeholder="28 JUN 2017 00:32">
+
+        <!-- Sign Message Button -->
+        <a class="btn btn-info btn-block" ng-click="generateSignedMsg()" translate="NAV_SignMsg" ng-show="wallet!=null">
+            Sign Message </a>
+        <a class="btn btn-info btn-block" ng-click="scanLedger();generateSignedMsgLedger()" translate="NAV_SignMsgLedger" ng-show="wallet!=null">
+            Sign Message with ledger Wallet</a>
+        <a class="btn btn-info btn-block" ng-click="KillAllServiceWorker()" ng-show="wallet!=null">
+            Service Worker unregister</a>
+
+
+
+        <!-- Signed Message -->
+        <div ng-show="signMsg.signedMsg">
+            <h5 translate="MSG_signature"> Signature </h5>
+            <label>
+                <textarea style="width: 270%;" "="" class="form-control" rows="4" readonly title="Signature">{{signMsg.signedMsg}}</textarea>
+            </label>
+        </div>
+    </section>
+    <!-- / Sign Message Stuff -->
+
+
+    <!-- Verify Message Stuff -->
+    <section ng-switch-when="verifyView">
+        <!-- Signature -->
+        <h5 translate="MSG_signature"> Signature </h5>
+        <textarea class="form-control" ng-model="verifyMsg.signedMsg" rows="6" placeholder="{ &quot;address&quot;:&quot;0xA7DeFf12461661212734dB35AdE9aE7d987D648c&quot;,&quot;msg&quot;:&quot;This message was signed by kvhnuke | 28 NOV 2016 1:38AM&quot;,&quot;sig&quot;:&quot;0x2190fdf0a011863fed22050372088d08404eb7cae020b73f24cfeca967773b3867f53f1ec96baffbdc6ec9dd3ca7c2ba4eed19a500f65cb3c343e24091b0c4f21b&quot;}"></textarea>
+
+        <!-- Verify Signature Message Button -->
+        <a class="btn btn-info btn-block" ng-click="verifySignedMessage()" translate="MSG_verify" ng-show="verifyMsg.signedMsg!=&apos;&apos;"> Verify Message </a>
+
+
+    </section>
+    <!-- / Verify Message Stuff -->
+
+</article>
+<!-- / Sign Message Panel -->
+    
+      </main>
+  </section>
+    
+    
+
+
+</article>
+
+<article class="col-sm-4">
+  <wallet-balance-drtv></wallet-balance-drtv>
+</article>
+
+
+
+
+  </section>
+  <!-- / View Wallet Section -->
+
+
+  <!-- Edit Modal -->
+  <section class="modal fade" id="editWallet" tabindex="-1" role="dialog" aria-labelledby="editWalletLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#xD7;</span></button>
+          <h3 class="modal-title text-primary">
+            <span translate="MYWAL_Edit_2">Edit Wallet:</span>
+            {{viewWallet.addr}}
+          </h3>
+        </div>
+        <div class="modal-body">
+          <form role="form" autocomplete="off">
+            <div class="form-group">
+              <label for="walletName" translate="MYWAL_Name">Wallet Name</label>
+              <input type="text" class="form-control" value="" ng-model="viewWallet.nick" ng-keyup="$event.keyCode == 13 &amp;&amp; editSave()">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer text-center">
+          <button type="button" class="btn btn-default" data-dismiss="modal" translate="x_Cancel">Cancel</button>
+          <button type="button" ng-show="viewWallet.nick.length&gt;0" class="btn btn-primary" ng-click="editSave()" translate="x_Save">Save</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!--/edit modal-->
+
+
+  <!-- View Private Key Modal -->
+  <section class="modal fade" id="viewWalletDetails" tabindex="-1" role="dialog" aria-labelledby="viewKeyLabel" ng-init="showPass=true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#xD7;</span></button>
+          <h3 class="modal-title text-warning">
+            <span translate="NAV_ViewWallet">View Wallet Info</span>:
+            {{viewWallet.nick}}
+          </h3>
+        </div>
+        <div class="modal-body">
+          <p translate="VIEWWALLET_Subtitle_Short"> This allows you to download different versions of private keys and re-print your paper wallet. </p>
+          <form role="form" autocomplete="off">
+            <div class="form-group">
+              <label for="walletName" translate="ADD_Label_3">Your file is encrypted. Please enter the password: </label>
+              <div class="input-group">
+
+                      <input stopccp="" type="{{showPass &amp;&amp; &apos;password&apos; || &apos;text&apos;}}" class="form-control" ng-model="password" ng-keyup="$event.keyCode == 13 &amp;&amp; decryptWallet()">
+
+                  <span class="input-group-addon eye" ng-click="showPass=!showPass"></span>
+              </div>
+
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer text-center">
+          <button type="button" class="btn btn-default" data-dismiss="modal" translate="x_Cancel">Cancel</button>
+          <button type="button" class="btn btn-warning" ng-click="decryptWallet()" translate="NAV_ViewWallet"> View Wallet Info </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/View Private Key Modal-->
+
+
+  <!-- Remove Modal -->
+  <section class="modal fade" id="removeWallet" tabindex="-1" role="dialog" aria-labelledby="removeWalletLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#xD7;</span></button>
+          <h3 class="modal-title text-danger">
+            <span translate="MYWAL_Content_1"> Warning! You are about to remove your wallet: </span> {{viewWallet.nick}}
+          </h3>
+        </div>
+        <div class="modal-body">
+          <p translate="MYWAL_Content_2"> Be sure you have **saved the private key and/or Keystore File and the password** before you remove it.</p>
+          <p translate="MYWAL_Content_3"> If you want to use this wallet with your MyTokenWalletCX in the future, you will need to manually re-add.</p>
+          <h4 translate="SENDModal_Content_3">Are you sure you want to do this?</h4>
+        </div>
+        <div class="modal-footer text-center">
+          <button type="button" class="btn btn-default" data-dismiss="modal" translate="SENDModal_No">No, get me out of here!</button>
+          <button type="button" class="btn btn-danger" ng-click="deleteWallet()" translate="MYWAL_Remove">Remove</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Remove modal-->
+
+
+</main>
+<!-- / My Wallet Page -->
+
+        <main id="int_addWallet_page" class="tab-pane active" ng-if="globalService.currentTab==globalService.tabs.addWallet.id" ng-controller="addWalletCtrl" ng-cloak="">
+  <h1 translate="NAV_AddWallet"> Add Wallet </h1>
+
+  <section class="row" id="walletselection">
+
+    <article class="col-md-4 col-sm-6">
+      <h4 translate="ADD_Label_1"> What would you like to do? </h4>
+        <label class="radio">
+          <input type="radio" name="typeOfKeyRadio" ng-model="walletType" value="gennewwallet">
+          <span translate="ADD_Radio_1">Generate New Wallet</span>
+        </label>
+        <label class="radio">
+          <input type="radio" name="typeOfKeyRadio" ng-model="walletType" value="fileupload">
+          <span translate="x_Keystore2">Keystore File</span>
+        </label>
+        <label class="radio">
+          <input type="radio" name="typeOfKeyRadio" ng-model="walletType" value="pasteprivkey">
+          <span translate="x_PrivKey2">Private Key</span>
+        </label>
+        <label class="radio">
+          <input type="radio" name="typeOfKeyRadio" ng-model="walletType" value="pastemnemonic">
+          <span translate="x_Mnemonic">Mnemonic</span><a href="bip39.html" target="_blank" rel="noopener"> / create new</a>
+        </label>
+        <label class="radio">
+          <input type="radio" name="typeOfKeyRadio" ng-model="walletType" value="watchonlyaccount">
+          <span translate="ADD_Radio_4">Add an Account to Watch</span>
+        </label>
+    </article>
+
+    <article class="col-md-4 col-sm-6">
+
+
+      <!-- Generate New Wallet -->
+      <div ng-show="walletType==&apos;gennewwallet&apos;" ng-init="showPass=true">
+        <h4 translate="ADD_Radio_1"> Generate New Wallet: </h4>
+
+        <div class="form-group">
+          <label translate="ADD_Label_2"> Create a Nickname: </label>
+          <input class="form-control" type="text" placeholder="{{&apos;MYWAL_Nick&apos; | translate }}" ng-model="addAccount.nickName" ng-change="newWalletChange(&apos;&apos;,&apos;showBtnGen&apos;)" ng-keyup="$event.keyCode == 13 &amp;&amp; importWalletToStorage()">
+        </div>
+        <div class="form-group">
+          <label translate="GEN_Label_1"> Create a Password: (at least 16 characters)</label>
+          <div class="input-group">
+            <input stopccp="" type="{{showPass &amp;&amp; &apos;password&apos; || &apos;text&apos;}}" class="form-control" placeholder="{{&apos;GEN_Placeholder_1&apos; | translate }}" ng-class="isStrongPass(addAccount.password) ? &apos;valid&apos; : &apos;invalid&apos;" ng-model="addAccount.password" ng-change="newWalletChange(&apos;&apos;,&apos;showBtnGen&apos;)" ng-keyup="$event.keyCode == 13 &amp;&amp; generateWallet()">
+            <span class="input-group-addon eye" ng-click="showPass=!showPass"></span>
+          </div>
+        </div>
+
+      </div>
+      <!-- / Generate New Wallet -->
+
+
+      <!-- Select Your Wallet File -->
+      <div ng-show="walletType==&apos;fileupload&apos;">
+        <h4 translate="ADD_Radio_2_alt">Select Your Wallet File: </h4>
+        <div class="form-group">
+          <input style="display:none;" type="file" on-read-file="showContent($fileContent)" id="fselector">
+          <a class="file-input btn btn-block btn-default btn-file marg-v-sm" ng-click="openFileDialog()" translate="ADD_Radio_2_short">SELECT WALLET FILE...</a>
+
+        </div>
+        <div class="form-group" ng-show="requireFPass">
+          <p translate="ADD_Label_3"> Your file is encrypted. Please enter the password: </p>
+          <input stopccp="" class="form-control" type="password" placeholder="{{&apos;x_Password&apos; | translate }}" ng-model="filePassword" ng-change="onFilePassChange()">
+        </div>
+      </div>
+
+      <!-- Paste/Type Your Private Key -->
+      <div ng-show="walletType==&apos;pasteprivkey&apos;">
+        <h4 translate="ADD_Radio_3"> Paste / type your private key: </h4>
+        <div class="form-group">
+          <textarea rows="4" class="form-control" placeholder="{{&apos;x_PrivKey2&apos; | translate }}" ng-model="manualprivkey" ng-change="onPrivKeyChange()" ng-keyup="$event.keyCode == 13 &amp;&amp; decryptWallet()"></textarea>
+        </div>
+        <div class="form-group" ng-show="requirePPass">
+          <p translate="ADD_Label_3"> Your file is encrypted. Please enter the password: </p>
+          <input stopccp="" class="form-control" type="password" placeholder="{{&apos;x_Password&apos; | translate }}" ng-model="privPassword" ng-change="onPrivKeyPassChange()" ng-keyup="$event.keyCode == 13 &amp;&amp; decryptWallet()">
+        </div>
+      </div>
+
+      <!-- Paste/Type Your Mnemonic -->
+      <div ng-show="walletType==&apos;pastemnemonic&apos;">
+        <h4 translate="ADD_Radio_5"> Paste / type your mnemonic: </h4>
+        <div class="form-group">
+          <textarea rows="4" class="form-control" placeholder="{{&apos;x_Mnemonic&apos; | translate }}" ng-model="manualmnemonic" ng-change="onMnemonicChange()" ng-keyup="$event.keyCode == 13 &amp;&amp; decryptWallet()"></textarea>
+        </div>
+      </div>
+
+      <!-- Add an Account to Watch -->
+      <div ng-show="walletType==&apos;watchonlyaccount&apos;">
+        <h4 translate="ADD_Label_4"> Add an Account to Watch: </h4>
+        <p class="text-danger" translate="ADD_Warning_1">You can add any account to &quot;watch&quot; on the wallets tab without uploading a private key. This does ** not ** mean you have access to this wallet, nor can you transfer Ether from it. </p>
+        <div class="form-group">
+          <label translate="ADD_Label_2"> Create a Nickname: </label>
+          <input class="form-control" type="text" placeholder="{{&apos;MYWAL_Nick&apos; | translate }}" ng-model="addAccount.nickName" ng-change="watchOnlyChange()">
+        </div>
+        <div class="form-group">
+          <label translate="ADD_Label_5"> Enter the Address: </label>
+          <input class="form-control" type="text" placeholder="0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8" ng-model="addAccount.address" ng-change="watchOnlyChange()" ng-keyup="$event.keyCode == 13 &amp;&amp; addWatchOnly()">
+        </div>
+      </div>
+
+    </article>
+
+    <article class="col-md-4 col-sm-6">
+        <div ng-show="showBtnGen">
+          <h4 translate="NAV_GenerateWallet"> Generate Wallet </h4>
+          <div class="form-group"><a ng-click="generateWallet()" class="btn btn-primary btn-block" translate="NAV_GenerateWallet">Generate Wallet</a></div>
+        </div>
+        <div ng-show="showBtnUnlock">
+          <h4 translate="ADD_Label_6"> Unlock your Wallet </h4>
+          <div class="form-group"><a ng-click="decryptWallet()" class="btn btn-primary btn-block" translate="ADD_Label_6_short">Unlock your Wallet</a></div>
+        </div>
+        <div ng-show="showBtnAdd">
+          <h4 translate="ADD_Label_7"> Add Account </h4>
+          <div class="form-group"><a ng-click="addWatchOnly()" class="btn btn-primary btn-block" translate="ADD_Label_7">Add Account</a></div>
+        </div>
+        <div ng-bind-html="addWalletStats"></div>
+    </article>
+
+  </section>
+
+  <article class="row" ng-if="showAddWallet">
+
+    <hr>
+
+    <!-- Sidebar -->
+    <div class="col-sm-4">
+      <h5 translate="sidebar_AccountAddr">Account Address:</h5>
+      <ul class="account-info">
+      <div class="addressIdenticon med float" title="Address Indenticon" blockie-address="{{wallet.getAddressString()}}" watch-var="wallet"></div>
+      <span class="mono wrap">{{wallet.getChecksumAddressString()}}</span>
+      </ul>
+      <h5 translate="sidebar_AccountBal">Account Balance:</h5>
+      <ul class="account-info">
+        <li><strong>{{etherBalance}}</strong> ETH </li>
+      </ul>
+      <h5 translate="sidebar_Equiv"> Equivalent Values: </h5>
+      <ul class="account-info">
+        <li><strong>{{usdBalance}}</strong> USD</li>
+        <li><strong>{{eurBalance}}</strong> EUR</li>
+        <li><strong>{{btcBalance}}</strong> BTC</li>
+      </ul>
+
+      <a ng-click="globalService.currentTab=globalService.tabs.swap.id" class="btn btn-primary btn-xs">Swap via Bity</a>
+
+      <h5 translate="sidebar_TransHistory"> Transaction History: </h5>
+      <ul class="account-info">
+        <li><a href="https://etherscan.io/address/{{wallet.getAddressString()}}" target="_blank" rel="noopener">https://etherscan.io/address/ {{wallet.getAddressString()}}</a></li>
+      </ul>
+    </div>
+
+    <!-- / Sidebar -->
+
+    <!-- Content -->
+    <div class="col-sm-8">
+      <h4 translate="NAV_AddWallet">Add Wallet</h4>
+      <div class="form-group">
+        <label translate="ADD_Label_2"> Create a Nickname: </label>
+        <input class="form-control" type="text" placeholder="{{&apos;MYWAL_Nick&apos; | translate }}" ng-model="addAccount.nickName" ng-change="newWalletChange(&apos;&apos;,&apos;showBtnAddWallet&apos;)">
+      </div>
+      <div class="form-group" ng-show="showPassTxt">
+        <label translate="GEN_Label_1"> Enter a strong password (at least 16 characters)</label>
+        <div class="input-group">
+          <input type="{{showPass &amp;&amp; &apos;password&apos; || &apos;text&apos;}}" class="form-control" placeholder="{{&apos;GEN_Placeholder_1&apos; | translate }}" ng-model="addAccount.password" ng-class="isStrongPass(addAccount.password) ? &apos;valid&apos; : &apos;invalid&apos;" ng-change="newWalletChange(&apos;&apos;,&apos;showBtnAddWallet&apos;)" ng-keyup="$event.keyCode == 13 &amp;&amp; importWalletToStorage()">
+          <span class="input-group-addon eye" ng-click="showPass=!showPass"></span>
+        </div>
+      </div>
+      <div class="form-group" ng-show="showBtnAddWallet">
+        <a class="btn btn-info btn-block" ng-click="importWalletToStorage()" translate="NAV_AddWallet">ADD WALLET </a>
+      </div>
+    </div>
+
+  </article>
+
+
+<!-- MODAL -->
+  <article class="modal fade" id="mnemonicModel" tabindex="-1" role="dialog" aria-labelledby="Mnemonic Phrase Modal">
+    <section class="modal-dialog">
+      <section class="modal-content">
+        <div class="modal-body" role="document">
+          <button aria-label="Close" type="button" class="close" data-dismiss="modal">&#xD7;</button>
+
+          <!-- Select HD Path -->
+          <h3 id="modalTitle" class="modal-title" translate="ADD_Radio_5_Path">
+            Select HD derivation path:
+          </h3>
+
+          <table class="small table table-striped table-mnemonic">
+
+            <tr>
+              <th> Path </th>
+              <th> Used By </th>
+            </tr>
+
+            <tr>
+              <td>
+            <label class="radio">
+                  <input aria-describedby="Path: Jaxx, Metamask, Exodus, imToken - {{HDWallet.defaultDPath}}" ng-change="onHDDPathChange()" ng-model="HDWallet.dPath" type="radio" value="{{HDWallet.defaultDPath}}">
+              <span ng-bind="HDWallet.defaultDPath"></span>
+            </label>
+              </td>
+              <td> Jaxx, Metamask, Exodus, imToken &amp; TREZOR (ETH)</td>
+            </tr>
+
+            <tr>
+              <td>
+            <label class="radio">
+                  <input aria-describedby="Path: Ledger (ETH) {{HDWallet.ledgerPath}}" ng-change="onHDDPathChange()" ng-model="HDWallet.dPath" type="radio" value="{{HDWallet.ledgerPath}}">
+                  <span ng-bind="HDWallet.ledgerPath"></span>
+            </label>
+              </td>
+              <td> Ledger (ETH)</td>
+            </tr>
+
+            <tr>
+              <td>
+                <label class="radio">
+                  <input aria-describedby="Path: Ledger (ETC) {{HDWallet.ledgerClassicPath}}" ng-change="onHDDPathChange()" ng-model="HDWallet.dPath" type="radio" value="{{HDWallet.ledgerClassicPath}}">
+                  <span ng-bind="HDWallet.ledgerClassicPath"></span>
+            </label>
+              </td>
+              <td> Ledger (ETC) </td>
+            </tr>
+
+            <tr>
+              <td>
+            <label class="radio">
+                  <input aria-describedby="Path: TREZOR (ETC) {{HDWallet.trezorClassicPath}}" ng-change="onHDDPathChange()" ng-model="HDWallet.dPath" type="radio" value="{{HDWallet.trezorClassicPath}}">
+                  <span ng-bind="HDWallet.trezorClassicPath"></span>
+            </label>
+              </td>
+              <td> TREZOR (ETC) </td>
+            </tr>
+
+            <tr>
+              <td>
+                <label class="radio">
+                  <input aria-describedby="Path: TREZOR - TESTNET - {{HDWallet.trezorTestnetPath}}" ng-change="onHDDPathChange()" ng-model="HDWallet.dPath" type="radio" value="{{HDWallet.trezorTestnetPath}}">
+                  <span ng-bind="HDWallet.trezorTestnetPath"></span>
+                </label>
+              </td>
+              <td> TREZOR (TESTNET) </td>
+            </tr>
+
+            <tr class="mnemonic-custom-row">
+              <td>
+                <label class="radio">
+                  <input aria-describedby="Path: Enter your own - {{HDWallet.customDPath}}" ng-change="onHDDPathChange()" ng-model="HDWallet.dPath" type="radio" value="{{HDWallet.customDPath}}">
+                  <input aria-describedby="Path: Enter your own - {{HDWallet.customDPath}}" type="text" class="form-control" ng-model="HDWallet.customDPath" ng-change="onCustomHDDPathChange()">
+                </label>
+              </td>
+              <td> Your Custom Path </td>
+            </tr>
+
+          </table>
+          <!-- END Select HD Path -->
+
+          <!-- Select Address -->
+          <hr>
+          <h3 id="modalTitle2" class="modal-title" translate="MNEM_1">
+            Please select the address you would like to interact with.
+          </h3>
+          <p class="small" translate="MNEM_2">
+            Your single HD mnemonic phrase can access a number of wallets / addresses.
+          </p>
+          <table class="small table table-striped table-mnemonic">
+            <tr>
+            <th translate="x_Address">Address</th>
+            <th translate="MYWAL_Bal">Balance</th>
+              <th translate="sidebar_TokenBal" class="text-center">Token<br>Balances</th>
+          </tr>
+          <tr ng-repeat="wallet in HDWallet.wallets track by $index">
+            <td><label>
+                  <input aria-describedby="modalTitle2" aria-label="Unlock wallet with {{wallet.getBalance()}} {{nodeType}}. Address: {{wallet.getChecksumAddressString()}}" name="addressSelect" ng-model="HDWallet.id" type="radio" value="{{$index}}">{{wallet.getChecksumAddressString()}}
+                </label>
+              </td>
+              <td>
+                <a href="{{ajaxReq.blockExplorerAddr.replace(&apos;[[address]]&apos;, wallet.getAddressString())}}" target="_blank" rel="noopener">
+                  {{wallet.getBalance()}} {{nodeType}}
+                </a>
+              </td>
+              <td class="text-center">
+                <a href="https://ethplorer.io/address/{{wallet.getAddressString()}}" target="_blank" rel="noopener" title="https://ethplorer.io/address/{{wallet.getAddressString()}}">
+                  <img src="images/icon-external-link.svg" title="https://ethplorer.io/address/{{wallet.getAddressString()}}" ng-click="removeTokenFromLocal(token.symbol)" ng-show="token.type!==&apos;default&apos;">
+                </a>
+              </td>
+          </tr>
+          <tr class="m-addresses">
+              <td>
+                <a ng-click="AddRemoveHDAddresses(false)" ng-show="HDWallet.numWallets &gt; 5" role="link" tabindex="0" translate="MNEM_prev"> Previous Addresses </a>
+            </td>
+            <td></td>
+              <td>
+                <a ng-click="AddRemoveHDAddresses(true)" role="link" tabindex="0" translate="MNEM_more"> More Addresses </a>
+              </td>
+          </tr></table>
+          <!-- END Select Address -->
+        </div>
+        <div class="modal-footer">
+          <button aria-label="Cancel - Will close dialog" class="btn btn-default" data-dismiss="modal" role="button" tabindex="0" translate="x_Cancel"> Cancel </button>
+          <button aria-label="Unlock this Wallet" class="btn btn-primary" ng-click="setHDWallet()" role="button" tabindex="0" translate="ADD_Label_6"> Access Wallet </button>
+        </div>
+      </section>
+    </section>
+  </article>
+
+
+
+</main>
+
+
+
+    </div>
+
+    <!-- /tab panes -->
+
+    <div data-ng-repeat="alert in notifier.alerts">
+    <div class="alert popup alert-{{alert.type}} animated-show-hide" style="bottom: {{85*$index}}px; z-index: {{999+$index}};">
+        <div class="container">
+            <div class="alert-message" ng-bind-html="alert.message"></div>
+        </div>
+        <i class="icon-close" ng-click="alert.close()"></i>
+    </div>
+</div>
+
+
+
+</section>
+
+
+<footer>
+  <div class="container">
+    <p>
+      <a href="https://MyTokenWallet.com" target="_blank" rel="noopener">MyTokenWallet.com</a>:
+
+      Open-Source, client-side tool for easily &amp; securely interacting with the Ethereum network.
+
+      Ported to MTW by
+      <a aria-label="zwilla&apos;s github" href="https://github.com/zwilla/mytokenwallet" target="_blank" rel="noopener">zwilla</a>
+      &amp;
+      &#xB7;
+      <a href="https://MyTokenWallet.com" target="_blank" rel="noopener" aria-label="my Token Wallet.com">
+        MyTokenWallet.com
+      </a>
+      &#xB7;
+      <a href="https://github.com/zwilla/mytokenwallet" target="_blank" rel="noopener" aria-label="my Token Wallet github">
+        Github
+      </a>
+      &#xB7;
+      <a href="https://myetherwallet.herokuapp.com/" target="_blank" rel="noopener" aria-label="join our slack">
+        Slack
+      </a>
+      &#xB7;
+      <a href="https://twitter.com/myetherwallet" target="_blank" rel="noopener" aria-label="twitter">
+        Twitter
+      </a>
+      &#xB7;
+      <a href="https://www.facebook.com/MyTokenWallet/" target="_blank" rel="noopener" aria-label="facebook">
+        Facebook
+      </a>
+      &#xB7;
+      <a href="mailto:save@MyTokenWallet.com" target="_blank" rel="noopener" aria-label="email save@MyTokenWallet.com">
+        Email
+      </a>
+
+    <div class="nav-scroll">
+      <ul class="nav-inner">
+        
+        <li ng-repeat="tab in tabNames track by $index" class="nav-item {{tab.name}}" ng-class="{active: $index==gService.currentTab}" ng-show="tab.mtw" ng-click="tabClick($index)"><a tabindex="0" aria-label="nav item: {{tab.name | translate}}" translate="{{tab.name}}"></a>
+        </li>
+        
+        
+          <a href="help.html" target="_blank" rel="noopener">&#x1F198;</a>
+        <a href="security.html" target="_blank" rel="noopener">&#x1F46E;</a>
+        <a href="bulkGenerate.html" target="_blank" rel="noopener">&#x1F4C3;&#x1F4B3;</a>
+        <a href="signMsg.html" target="_blank" rel="noopener">&#x1F3AB;&#x1F50F;</a>
+          <a href="embedded.html" target="_blank" rel="noopener">&#x1F530;</a>
+        <a href="support.html" target="_blank" rel="noopener">&#x260E;&#xFE0F;</a>
+          <img href="https://github.com/Zwilla/mytokenwallet.com/blob/master/Security_and_Privacy_tests_and_results.md" class="img-fill" alt="MyTkoenWallet Site Security" title="Site Security tested with" src="images/SiteSecutiry-MyTokenWallet.com.png">
+      </ul>
+    </div>
+    </p></div>
+  </footer>
+</body>
+</html>
+

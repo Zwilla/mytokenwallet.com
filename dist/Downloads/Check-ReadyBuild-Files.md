@@ -22,7 +22,7 @@ https://jswebcrypto.azurewebsites.net/demo.html#/hash
 
 ***
 
-## Webarchive
+## Web archive
 
 * Password = zwilla
 * 02 August 2017

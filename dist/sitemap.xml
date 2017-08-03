@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://mytokenwallet.com/</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://mytokenwallet.com/#send-transaction</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://mytokenwallet.com/#swap</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://mytokenwallet.com/#offline-transaction</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://mytokenwallet.com/#contracts</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://mytokenwallet.com/#ens</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://mytokenwallet.com/#check-tx-status</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://mytokenwallet.com/#view-wallet-info</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://mytokenwallet.com/signmsg.html</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mytokenwallet.com/helpers.html</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://mytokenwallet.com/security.html</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://mytokenwallet.com/bip39.html</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://mytokenwallet.com/index-guide.html</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://mytokenwallet.com/embedded.html</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://mytokenwallet.com/mywallet.html</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://mytokenwallet.com/ledger-wallet.html</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://mytokenwallet.com/helpers.html</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://mytokenwallet.com/bulkGenerate.html</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://mytokenwallet.com/pwStrength-meter.html</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mtwApp" ng-strict-di="">
+<head>
+  <meta charset="utf-8">
+  <title>MyTokenWallet: Open Source JavaScript Client-Side Ether Wallet</title>
+  <link rel="canonical" href="https://MyTokenWallet.com">
+  <meta name="description" content="Ether Wallet: Open Source JavaScript Client-Side Ether Wallet">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/tokenwallets-master.min.css" integrity="sha384-okfxkQ8tW50iB4y+BGhPci4YfXEznA55bfE9gKdJp9cHNqzBDlTtiKQxftfOBqfR" crossorigin="anonymous">
+  <script type="text/javascript" src="js/tokenwallet-static.min.js" integrity="sha384-fwXLzEBdZ+5W/I+AXuFeaRp5ju6dgxnwVjtrmOFU00OT9gNezNnBsZ4hNpL2fN4h" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/tokenwallet-master.min.js" integrity="sha384-JO14pCBFNPoETUIkkTHHJLAP/mv12Hw+/NCYmgVieUJoyEzOLaSfRVFl03Htfqzr" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/zwilla.min.js" integrity="sha384-yNKiJx8WavqpJA7k+NdF2a3hB9DkGR4VijcZQt8AdfWfN54jyaTw2Jfbj6YxJmtB" crossorigin="anonymous"></script>
+  <link rel="apple-touch-icon" sizes="60x60" href="images/fav/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="images/fav/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="images/fav/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="images/fav/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/fav/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="images/fav/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="images/fav/favicon-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="images/fav/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="images/fav/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="images/fav/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="images/fav/manifest.json">
+  <link rel="shortcut icon" href="images/favicon.ico">
+  <meta name="msapplication-TileColor" content="#2e4868">
+  <meta name="msapplication-TileImage" content="images/fav/mstile-144x144.png">
+  <meta name="msapplication-config" content="images/fav/browserconfig.xml">
+  <meta name="theme-color" content="#2e4868">
+</head>
+
+<body>
+
+<div id="resultprivate" class="resultprivate1"></div>
+
+<header class="bg-gradient text-white">
+<section class="container text-center">
+  <a href="https://mytokenwallet.com/"><img src="images/logo-MyTokenWallet.png" height="50px" width="auto" alt="My Token Wallet" class="embedded-logo"></a>
+</section>
+</header>
+
+<section ng-controller="tabsCtrl">
+    <section class="container" style="min-height: 50%" ng-controller="signMsgCtrl">
+        <!-- tab panes -->
+        <div class="tab-content">
+            <!-- Sign Message Panel
+<script src="js/ledger.min.js"></script>
+<script src="js/u2f-api.js"></script>
+-->
+<h2>
+    <a translate="NAV_SignMsg" ng-class="{ &apos;isActive&apos;: visibility==&apos;signView&apos; }" ng-click="setVisibility(&apos;signView&apos;)">
+        Sign Message </a>
+    or
+    <a translate="MSG_verify" ng-class="{ &apos;isActive&apos;: visibility==&apos;verifyView&apos; }" ng-click="setVisibility(&apos;verifyView&apos;)">
+        Verify Message </a>
+</h2>
+
+<article class="col-xs-12 clearfix" ng-switch="" on="visibility">
+
+    <!-- Sign Message Stuff -->
+    <section ng-switch-when="signView">
+
+        <!-- Message -->
+        <div class="account-help-icon">
+            <img src="images/icon-help.svg" class="help-icon">
+            <ul class="account-help-text">
+                <li translate="MSG_info2">Include your nickname and where you use the nickname so someone else cannot
+                    use it.
+                </li>
+                <li translate="MSG_info3">Include a specific reason for the message so it cannot be reused for a
+                    different purpose.
+                </li>
+            </ul>
+            <h5 translate="MSG_message"> Message </h5>
+        </div>
+
+
+        <textarea class="form-control" ng-model="signMsg.message" placeholder="This server is more secure than million others! Take a look to section: security!!! It is recommende to set a date here!!!" rows="5"></textarea>
+
+        <!-- Date -->
+        <div class="account-help-icon">
+            <img src="images/icon-help.svg" class="help-icon">
+            <p class="account-help-text" translate="MSG_info1">Include the current date so the signature cannot be
+                reused on a different date.</p>
+            <h5 translate="MSG_date"> Date </h5>
+        </div>
+        <input class="form-control" ng-model="signMsg.dateTime" type="text" placeholder="28 JUN 2017 00:32">
+
+        <!-- Sign Message Button -->
+        <a class="btn btn-info btn-block" ng-click="generateSignedMsg()" translate="NAV_SignMsg" ng-show="wallet!=null">
+            Sign Message </a>
+        <a class="btn btn-info btn-block" ng-click="scanLedger();generateSignedMsgLedger()" translate="NAV_SignMsgLedger" ng-show="wallet!=null">
+            Sign Message with ledger Wallet</a>
+        <a class="btn btn-info btn-block" ng-click="KillAllServiceWorker()" ng-show="wallet!=null">
+            Service Worker unregister</a>
+
+
+
+        <!-- Signed Message -->
+        <div ng-show="signMsg.signedMsg">
+            <h5 translate="MSG_signature"> Signature </h5>
+            <label>
+                <textarea style="width: 270%;" "="" class="form-control" rows="4" readonly title="Signature">{{signMsg.signedMsg}}</textarea>
+            </label>
+        </div>
+    </section>
+    <!-- / Sign Message Stuff -->
+
+
+    <!-- Verify Message Stuff -->
+    <section ng-switch-when="verifyView">
+        <!-- Signature -->
+        <h5 translate="MSG_signature"> Signature </h5>
+        <textarea class="form-control" ng-model="verifyMsg.signedMsg" rows="6" placeholder="{ &quot;address&quot;:&quot;0xA7DeFf12461661212734dB35AdE9aE7d987D648c&quot;,&quot;msg&quot;:&quot;This message was signed by kvhnuke | 28 NOV 2016 1:38AM&quot;,&quot;sig&quot;:&quot;0x2190fdf0a011863fed22050372088d08404eb7cae020b73f24cfeca967773b3867f53f1ec96baffbdc6ec9dd3ca7c2ba4eed19a500f65cb3c343e24091b0c4f21b&quot;}"></textarea>
+
+        <!-- Verify Signature Message Button -->
+        <a class="btn btn-info btn-block" ng-click="verifySignedMessage()" translate="MSG_verify" ng-show="verifyMsg.signedMsg!=&apos;&apos;"> Verify Message </a>
+
+
+    </section>
+    <!-- / Verify Message Stuff -->
+
+</article>
+<!-- / Sign Message Panel -->
+
+          <div ng-show="visibility==&apos;signView&apos; &amp;&amp; wallet==null" ng-cloak=""><wallet-decrypt-drtv></wallet-decrypt-drtv></div>
+        </div>
+        <!-- /tab panes -->
+
+        <div data-ng-repeat="alert in notifier.alerts">
+    <div class="alert popup alert-{{alert.type}} animated-show-hide" style="bottom: {{85*$index}}px; z-index: {{999+$index}};">
+        <div class="container">
+            <div class="alert-message" ng-bind-html="alert.message"></div>
+        </div>
+        <i class="icon-close" ng-click="alert.close()"></i>
+    </div>
+</div>
+
+
+    </section>
+</section>
+<footer>
+  <div class="container">
+    <p>
+      <a href="https://MyTokenWallet.com" target="_blank" rel="noopener">MyTokenWallet.com</a>:
+
+      Open-Source, client-side tool for easily &amp; securely interacting with the Ethereum network.
+
+      Ported to MTW by
+      <a aria-label="zwilla&apos;s github" href="https://github.com/zwilla/mytokenwallet" target="_blank" rel="noopener">zwilla</a>
+      &amp;
+      &#xB7;
+      <a href="https://MyTokenWallet.com" target="_blank" rel="noopener" aria-label="my Token Wallet.com">
+        MyTokenWallet.com
+      </a>
+      &#xB7;
+      <a href="https://github.com/zwilla/mytokenwallet" target="_blank" rel="noopener" aria-label="my Token Wallet github">
+        Github
+      </a>
+      &#xB7;
+      <a href="https://myetherwallet.herokuapp.com/" target="_blank" rel="noopener" aria-label="join our slack">
+        Slack
+      </a>
+      &#xB7;
+      <a href="https://twitter.com/myetherwallet" target="_blank" rel="noopener" aria-label="twitter">
+        Twitter
+      </a>
+      &#xB7;
+      <a href="https://www.facebook.com/MyTokenWallet/" target="_blank" rel="noopener" aria-label="facebook">
+        Facebook
+      </a>
+      &#xB7;
+      <a href="mailto:save@MyTokenWallet.com" target="_blank" rel="noopener" aria-label="email save@MyTokenWallet.com">
+        Email
+      </a>
+
+    <div class="nav-scroll">
+      <ul class="nav-inner">
+        
+        <li ng-repeat="tab in tabNames track by $index" class="nav-item {{tab.name}}" ng-class="{active: $index==gService.currentTab}" ng-show="tab.mtw" ng-click="tabClick($index)"><a tabindex="0" aria-label="nav item: {{tab.name | translate}}" translate="{{tab.name}}"></a>
+        </li>
+        
+        
+          <a href="help.html" target="_blank" rel="noopener">&#x1F198;</a>
+        <a href="security.html" target="_blank" rel="noopener">&#x1F46E;</a>
+        <a href="bulkGenerate.html" target="_blank" rel="noopener">&#x1F4C3;&#x1F4B3;</a>
+        <a href="signMsg.html" target="_blank" rel="noopener">&#x1F3AB;&#x1F50F;</a>
+          <a href="embedded.html" target="_blank" rel="noopener">&#x1F530;</a>
+        <a href="support.html" target="_blank" rel="noopener">&#x260E;&#xFE0F;</a>
+          <img href="https://github.com/Zwilla/mytokenwallet.com/blob/master/Security_and_Privacy_tests_and_results.md" class="img-fill" alt="MyTkoenWallet Site Security" title="Site Security tested with" src="images/SiteSecutiry-MyTokenWallet.com.png">
+      </ul>
+    </div>
+    </p></div>
+  </footer>
+</body>
+</html>
+

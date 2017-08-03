@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+  <meta charset="utf-8">
+  <title>Zwilla&apos;s Toolbox - BIP39 - Mnemonic Code</title>
+  <link rel="stylesheet" href="css/tokenwallet-bootstrap.min.css" crossorigin="use-credentials" integrity="sha384-Ej0hUpn6wbrOTJtRExp8jvboBagaz+Or6E9zzWT+gHCQuuZQQVZUcbmhXQzSG17s">
+  <link rel="stylesheet" href="css/tokenwallet-bp39.css" crossorigin="use-credentials" integrity="sha384-FkB+wYSPD86dZy0hmB0WlV216Y0CsUWyKW7IiLe8SN9TAAlaHhAwLHXhuiUWuWvJ">
+  <meta content="Mnemonic code for generating deterministic keys" name="description">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="bitcoin mnemonic converter" name="description">
+  <meta content="Miguel Padilla" name="coauthor">
+  <meta http-equiv="cache-control" content="max-age=0">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  <meta http-equiv="expires" content="Wed, 15 Apr 1970 8:47:00 GMT">
+  <meta http-equiv="pragma" content="no-cache">
+  <link type="image/x-icon" rel="icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=">
+
+
+</head>
+<main>
+<body>
+<div class="container">
+
+  <h1 class="text-center">Zwilla&apos;s Toolbox Mnemonic Code Converter</h1>
+  <p class="version">v0.1.2</p>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Mnemonic </h2>
+      <h3>(NEVER USE THIS ON AN ONLINE COMPUTER !!!)</h3>
+      <form class="form-horizontal" role="form">
+        <div class="form-group">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-10">
+            <p data-translate="">You can enter an existing BIP39 mnemonic, or generate a new random one. Typing your own
+              twelve words will probably not work how you expect, since the words require a particular structure (the
+              last word is a checksum).</p>
+            <p data-translate-html="">
+              For more info see the
+              <a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki" target="_blank">BIP39 spec</a>.
+            </p>
+          </div>
+        </div>
+        <div class="form-group generate-container">
+          <label class="col-sm-2 control-label"></label>
+          <div class="col-sm-10">
+            <div class="form-inline">
+              <div class="input-group-inline">
+                <span data-translate="">Generate a random mnemonic, or enter your own below</span>:
+                <button class="btn generate">Generate</button>
+                <select id="strength" class="strength form-control">
+                  <option value="18">18</option>
+                  <option value="21">21</option>
+                  <option value="24" selected>24</option>
+                </select>
+                <span data-translate="">words</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="entropy-container hidden">
+          <div class="form-group text-danger">
+            <label class="col-sm-2 control-label" data-translate="">Warning</label>
+            <div class="col-sm-10 form-control-static">
+              <span data-translate="">Entropy is an advanced feature. Your mnemonic may be insecure if this feature is used incorrectly.</span>
+              <a href="#entropy-notes" data-translate="">Read more</a>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="entropy" class="col-sm-2 control-label" data-translate="">Entropy</label>
+            <div class="col-sm-7">
+              <textarea id="entropy" rows="2" class="entropy form-control" placeholder="Accepts binary, base 6, 6-sided dice, base 10, hexadecimal, cards" data-translate-placeholder=""></textarea>
+              <div class="row">
+                <label class="col-sm-3 control-label" data-translate=""><span class="more-info" data-translate-title="" title="Based on estimates from zxcvbn using Filtered Entropy">Time To Crack</span></label>
+                <div class="crack-time col-sm-3 form-control-static"></div>
+                <label class="col-sm-3 control-label" data-translate="">Event Count</label>
+                <div class="event-count col-sm-3 form-control-static"></div>
+              </div>
+              <div class="row">
+                <label class="col-sm-3 control-label" data-translate="">Entropy Type</label>
+                <div class="type col-sm-3 form-control-static"></div>
+                <label class="col-sm-3 control-label" data-translate="">Bits Per Event</label>
+                <div class="bits-per-event col-sm-3 form-control-static"></div>
+              </div>
+              <div class="row">
+                <label class="col-sm-3 control-label" data-translate="">Raw Entropy Words</label>
+                <div class="word-count col-sm-3 form-control-static"></div>
+                <label class="col-sm-3 control-label" data-translate=""><span class="more-info" data-translate-title="" title="Total bits of entropy may be less than indicated if any entropy event uses a weak source.">Total Bits</span></label>
+                <div class="bits col-sm-3 form-control-static"></div>
+              </div>
+              <label class="col-sm-3 control-label" data-translate="">Filtered Entropy</label>
+              <div class="filtered col-sm-9 form-control-static"></div>
+              <label class="col-sm-3 control-label" data-translate="">Raw Binary</label>
+              <div class="binary col-sm-9 form-control-static"></div>
+              <label class="col-sm-3 control-label" data-translate="">Mnemonic Length</label>
+              <div class="col-sm-9">
+                <select class="mnemonic-length form-control">
+                  <option value="raw" selected data-translate="">Use Raw Entropy (3 words per 32 bits)</option>
+                  <option value="18">18 <span data-translate="">Words</span></option>
+                  <option value="21">21 <span data-translate="">Words</span></option>
+                  <option value="24">24 <span data-translate="">Words</span></option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <p data-translate="">Valid entropy values include:</p>
+              <ul>
+                <li><strong data-translate="">Binary</strong> [0-1]<br>101010011</li>
+                <li><strong data-translate="">Base 6</strong> [0-5]<br>123434014</li>
+                <li><strong data-translate="">Dice</strong> [1-6]<br>62535634</li>
+                <li><strong data-translate="">Base 10</strong> [0-9]<br>90834528</li>
+                <li><strong data-translate="">Hex</strong> [0-9A-F]<br>4187a8bfd9</li>
+                <li><strong data-translate="">Card</strong> [A2-9TJQK][CDHS]<br>ahqs9dtc</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-10 checkbox">
+            <label>
+              <input type="checkbox" class="use-entropy">
+              <span data-translate="">Supply my own source of entropy</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" data-translate="">Mnemonic Language</label>
+          <div class="col-sm-10 languages">
+            <div class="form-control no-border">
+              <a href="#english">English</a>
+              <a href="#japanese" title="Japanese">&#x65E5;&#x672C;&#x8A9E;</a>
+              <a href="#spanish" title="Spanish">Espa&#xF1;ol</a>
+              <a href="#chinese_simplified" title="Chinese (Simplified)">&#x4E2D;&#x6587;(&#x7B80;&#x4F53;)</a>
+              <a href="#chinese_traditional" title="Chinese (Traditional)">&#x4E2D;&#x6587;(&#x7E41;&#x9AD4;)</a>
+              <a href="#french" title="French">Fran&#xE7;ais</a>
+              <a href="#italian" title="Italian">Italiano</a>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phrase" class="col-sm-2 control-label" data-translate="">BIP39 Mnemonic</label>
+          <div class="col-sm-10">
+            <textarea id="phrase" class="phrase form-control" data-show-qr=""></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="passphrase" class="col-sm-2 control-label" data-translate="">BIP39 Passphrase (You have to set one!)</label>
+          <div class="col-sm-10">
+            <textarea id="passphrase" class="passphrase form-control"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="seed" class="col-sm-2 control-label" data-translate="">BIP39 Seed</label>
+          <div class="col-sm-10">
+            <textarea id="seed" class="seed form-control" readonly="readonly" data-show-qr=""></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="network-phrase" class="col-sm-2 control-label" data-translate="">Coin</label>
+          <div class="col-sm-10">
+            <select id="network-phrase" class="network form-control">
+              <!-- populated by javascript -->
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="root-key" class="col-sm-2 control-label" data-translate="">BIP32 Root Key</label>
+          <div class="col-sm-10">
+            <textarea id="root-key" class="root-key form-control" data-show-qr=""></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Derivation Path</h2>
+      <ul class="derivation-type nav nav-tabs" role="tablist">
+        <li id="bip44-tab" class="active">
+          <a href="#bip44" role="tab" data-toggle="tab">BIP44</a>
+        </li>
+        <li id="bip32-tab">
+          <a href="#bip32" role="tab" data-toggle="tab">BIP32</a>
+        </li>
+      </ul>
+      <div class="derivation-type tab-content">
+        <div id="bip44" class="tab-pane active">
+          <form class="form-horizontal" role="form">
+            <br>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+              <p data-translate-html="">
+                For more info see the
+                <a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki" target="_blank">BIP44 spec</a>.
+              </p>
+            </div>
+            <div class="form-group">
+              <label for="purpose" class="col-sm-2 control-label">
+                <a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki#purpose" target="_blank" data-translate="">Purpose</a>
+              </label>
+              <div class="col-sm-10">
+                <input id="purpose" type="text" class="purpose form-control" value="44">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="coin" class="col-sm-2 control-label">
+                <a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki#registered-coin-types" target="_blank" data-translate="">Coin</a>
+              </label>
+              <div class="col-sm-10">
+                <input id="coin" type="text" class="coin form-control" value="0">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="account" class="col-sm-2 control-label">
+                <a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki#account" target="_blank" data-translate="">Account</a>
+              </label>
+              <div class="col-sm-10">
+                <input id="account" type="text" class="account form-control" value="0">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="change" class="col-sm-2 control-label">
+                <a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki#change" target="_blank" data-translate="">External / Internal</a>
+              </label>
+              <div class="col-sm-10">
+                <input id="change" type="text" class="change form-control" value="0">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">
+              </label>
+              <div class="col-sm-10">
+                <p data-translate="">The account extended keys can be used for importing to most BIP44 compatible wallets,
+                  such as mycelium or electrum.</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="account-xprv" class="col-sm-2 control-label">
+                <span data-translate="">Account Extended Private Key</span>
+              </label>
+              <div class="col-sm-10">
+                <textarea id="account-xprv" type="text" class="account-xprv form-control" readonly data-show-qr=""></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="account-xpub" class="col-sm-2 control-label">
+                <span data-translate="">Account Extended Public Key</span>
+              </label>
+              <div class="col-sm-10">
+                <textarea id="account-xpub" type="text" class="account-xpub form-control" readonly data-show-qr=""></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">
+              </label>
+              <div class="col-sm-10">
+                <p data-translate="">The BIP32 derivation path and extended keys are the basis for the derived
+                  addresses.</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="bip44-path" class="col-sm-2 control-label" data-translate="">BIP32 Derivation Path</label>
+              <div class="col-sm-10">
+                <input id="bip44-path" type="text" class="path form-control" value="m/44&apos;/0&apos;/0&apos;/0" readonly="readonly">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div id="bip32" class="tab-pane">
+          <form class="form-horizontal" role="form">
+            <br>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+              <p data-translate="">
+                For more info see the
+                <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_blank">BIP32 spec</a>
+              </p>
+            </div>
+            <div class="form-group">
+              <label for="bip32-client" class="col-sm-2 control-label" data-translate="">Client</label>
+              <div class="col-sm-10">
+                <select id="bip32-client" class="client form-control">
+                  <option value="custom">Custom derivation path</option>
+                  <!-- populated by javascript -->
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="bip32-path" class="col-sm-2 control-label" data-translate="">BIP32 Derivation Path</label>
+              <div class="col-sm-10">
+                <input id="bip32-path" type="text" class="path form-control" value="m/0">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-2"></div>
+              <label class="col-sm-10">
+                <input class="hardened-addresses" type="checkbox">
+                <span data-translate="">Use hardened addresses</span>
+              </label>
+            </div>
+            <div class="form-group">
+              <label for="core-path" class="col-sm-2 control-label" data-translate="">Bitcoin Core</label>
+              <div class="col-sm-10">
+                <p class="form-control no-border" data-translate-html="">
+                  Use path <code>m/0&apos;/0&apos;</code> with hardened addresses.
+                </p>
+                <p class="form-control no-border" data-translate-html="">
+                  For more info see the
+                  <a href="https://github.com/bitcoin/bitcoin/pull/8035" target="_blank">Bitcoin Core BIP32
+                    implementation</a>
+                </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="core-path" class="col-sm-2 control-label" data-translate="">Multibit</label>
+              <div class="col-sm-10">
+                <p class="form-control no-border">
+                  <span data-translate-html="">Use path <code>m/0&apos;/0</code>.</span>
+                </p>
+                <p class="form-control no-border">
+                  <span data-translate="">For more info see</span>
+                  <a href="https://multibit.org/" target="_blank">MultiBit HD</a>
+                </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label" data-translate="">Block Explorers</label>
+              <div class="col-sm-10">
+                <p class="form-control no-border">
+                  <span data-translate-html="">Use path <code>m/44&apos;/0&apos;/0&apos;</code>.</span>
+                  <span data-translate-html="">Only enter the <code>xpub</code> extended key into block explorer search fields, never the <code>xprv</code> key.</span>
+                </p>
+                <p class="form-control no-border">
+                  <span data-translate="">Can be used with</span>:
+                  <a href="https://blockchain.info/" target="_blank">blockchain.info</a>
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <form class="form-horizontal" role="form">
+        <div class="form-group">
+          <label for="extended-priv-key" class="col-sm-2 control-label" data-translate="">BIP32 Extended Private
+            Key</label>
+          <div class="col-sm-10">
+            <textarea id="extended-priv-key" class="extended-priv-key form-control" readonly="readonly" data-show-qr=""></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="extended-pub-key" class="col-sm-2 control-label" data-translate="">BIP32 Extended Public Key</label>
+          <div class="col-sm-10">
+            <textarea id="extended-pub-key" class="extended-pub-key form-control" readonly="readonly" data-show-qr=""></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Derived Addresses</h2>
+      <p data-translate="">Note these addreses are derived from the BIP32 Extended Key</p>
+      <table class="table table-striped">
+        <thead>
+        <th>
+          <div class="input-group">
+            <span data-translate="">Path</span>&#xA0;&#xA0;
+            <button class="index-toggle" data-translate="">Toggle</button>
+          </div>
+        </th>
+        <th>
+          <div class="input-group">
+            <span data-translate="">Address</span>&#xA0;&#xA0;
+            <button class="address-toggle" data-translate="">Toggle</button>
+          </div>
+        </th>
+        <th>
+          <div class="input-group">
+            <span data-translate="">Public Key</span>&#xA0;&#xA0;
+            <button class="public-key-toggle" data-translate="">Toggle</button>
+          </div>
+        </th>
+        <th>
+          <div class="input-group">
+            <span data-translate="">Private Key</span>&#xA0;&#xA0;
+            <button class="private-key-toggle" data-translate="">Toggle</button>
+          </div>
+        </th>
+        </thead>
+        <tbody class="addresses monospace">
+        <tr>
+          <td>&#xA0;</td>
+          <td>&#xA0;</td>
+          <td>&#xA0;</td>
+          <td>&#xA0;</td>
+        </tr>
+        <tr>
+          <td>&#xA0;</td>
+          <td>&#xA0;</td>
+          <td>&#xA0;</td>
+          <td>&#xA0;</td>
+        </tr>
+        <tr>
+          <td>&#xA0;</td>
+          <td>&#xA0;</td>
+          <td>&#xA0;</td>
+          <td>&#xA0;</td>
+        </tr>
+        <tr>
+          <td>&#xA0;</td>
+          <td>&#xA0;</td>
+          <td>&#xA0;</td>
+          <td>&#xA0;</td>
+        </tr>
+        <tr>
+          <td>&#xA0;</td>
+          <td>&#xA0;</td>
+          <td>&#xA0;</td>
+          <td>&#xA0;</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <span data-translate="">Show more rows</span>:
+  <input type="number" class="rows-to-add" value="20">
+  <button class="more" data-translate="">Show</button>
+
+  <hr>
+
+
+</div>
+
+<div class="qr-container hidden">
+  <div class="qr-hint bg-primary hidden" data-translate="">Click field to hide QR</div>
+  <div class="qr-hint bg-primary" data-translate="">Click field to show QR</div>
+  <div class="qr-hider hidden">
+    <div class="qr-image"></div>
+    <div class="qr-warning bg-primary" data-translate="">Caution: Scanner may keep history</div>
+  </div>
+</div>
+
+<div class="feedback-container">
+  <div class="feedback">Loading...</div>
+</div>
+
+<script type="text/template" id="address-row-template">
+  <tr>
+    <td class="index"><span></span></td>
+    <td class="address"><span data-show-qr></span></td>
+    <td class="pubkey"><span data-show-qr></span></td>
+    <td class="privkey"><span data-show-qr></span></td>
+  </tr>
+</script>
+<script src="js/b39-polyfill.es6.js" crossorigin="use-credentials" integrity="sha384-RjJ0rHNd4bOD/Gin/kI/wBONlXShWzaesU/LDl0z0dsMMm6hJSE24sfOWj/Hq/9B"></script>
+<script src="js/b39-basex.js" crossorigin="use-credentials" integrity="sha384-GMxZarTGE4WI3nmVCWnEbNwPD6b3kUXwzwv1iRPswgg0TQxNy9pwpZ4j6rnmuTq9"></script>
+<script src="js/b39-unorm.js" crossorigin="use-credentials" integrity="sha384-F0AwatCV9ekCN8dPsVxLm9l340nTzqEHhUYsYX7OflSk3ikmbkevbEQsHP52x/EO"></script>
+<script src="js/b39-jquery.min.js" crossorigin="use-credentials" integrity="sha384-fj9YEHKNa/e0CNquG4NcocjoyMATYo1k2Ff5wGB42C/9AwOlJjDoySPtNJalccfI"></script>
+<script src="js/b39-bootstrap.min.js" crossorigin="use-credentials" integrity="sha384-VI5+XuguQ/l3kUhh4knz7Hxptx47wpQbVRDnp8v7Vvuhzwn1PEYb/uvtH6KLxv6d"></script>
+<script src="js/b39-levenshtein.js" crossorigin="use-credentials" integrity="sha384-gmBQMIfRrkZZ+NfFy7uUCwxKCdvqRYU5OfFE/IHSsCvnMH7NfTtxF9JJCBfsrhO0"></script>
+<script src="js/b39-jquery.qrcode.min.js" crossorigin="use-credentials" integrity="sha384-hkyGWC0VvOqPOofmX1ioEBRfXaCcoEpd1VJ7mPZnhRz1CP7g53oeqPvQ5ies46+I"></script>
+<script src="js/b39-bitcoinjs-1-5-7.js" crossorigin="use-credentials" integrity="sha384-ut87pzWRIvZMg27B3ikgN9A6rDnaVyiWdyCb9QB1U0kVQW8HQjGFGTeojqJ2+f9M"></script>
+<script src="js/b39-bitcoinjs-extensions.js" crossorigin="use-credentials" integrity="sha384-jjkJdGG7n8ra/5EihwF8A2kLB+ocZZdCCIw2gKochEyQk3BgnVVHKMLuJuDxZePJ"></script>
+<script src="js/b39-ethereumjs-util.js" crossorigin="use-credentials" integrity="sha384-sqXwMKQ8qwVOmE7Vf7WPwimKBiwTL/CRlfe7I6aUmeZAUnwdeBvrlt9SeAW0XqPr"></script>
+<script src="js/b39-ripple-util.js" crossorigin="use-credentials" integrity="sha384-mfYOzkt+mhuguqiELVDdZNsAmn4HFmv9n555yTlsm+DrDc1v5M24jHRpCXhgZQOz"></script>
+<script src="js/b39-sjcl-bip39.js" crossorigin="use-credentials" integrity="sha384-H7Vkx8rPTevUtGjU4hg9JDcM14VVchj01y+NHIviBpRLvZC1YaUvLRYWWns5x6uU"></script>
+<script src="js/b39-translate.js" crossorigin="use-credentials" integrity="sha384-u7UmqQXOQ5lztB2utT5cB3h4ynl/LBO/1X91OxJKhEDm313Qw2YeBwy6Hq5U8yar"></script>
+<script src="js/b39-phrases_en.js" crossorigin="use-credentials" integrity="sha384-8ysQiQWMBtRNb/Jo+sVFubLFwd3qr3N1eCZkr+o9Tjd1fq3xI3KShRDZeBqvH8C1"></script>
+<script src="js/b39-wordlist_english.js" crossorigin="use-credentials" integrity="sha384-njqBv+vTpqAxsnrfa4zGgRb8hwBL2AJgasM059PJh0pmUQuAIlfwr9eYxltq8HH+"></script>
+<script src="js/b39-wordlist_japanese.js" crossorigin="use-credentials" integrity="sha384-gxL2arsNnqxeQbr3A+1RR47bgcwhhtjTfmCoh6U120dcosCDvRZB5HkvX90Qv0wu"></script>
+<script src="js/b39-wordlist_spanish.js" crossorigin="use-credentials" integrity="sha384-GhqwcCdTHEA4hyjgfByxDbHqvut6y3ess62CoBPBfAjuPRIs6G4sADpxX8AG93Ky"></script>
+<script src="js/b39-wordlist_chinese_simplified.js" crossorigin="use-credentials" integrity="sha384-r7C+1Q67O0JL2Q1c6Y+SM4+Z0dfbcxyVhZBUm2BRiucJhKaflJaW5pe692aEgeIf"></script>
+<script src="js/b39-wordlist_chinese_traditional.js" crossorigin="use-credentials" integrity="sha384-oHcyoxizR8BJpGOtfFGzOaEGZGZ0At/BkiP0fN1+NW8BelMMTKLSN+54wVfCKHpa"></script>
+<script src="js/b39-wordlist_french.js" crossorigin="use-credentials" integrity="sha384-lR//QFmZf8JWljvu/5ph+fxzSLNT12XQCFNbEwpwaXYA/RBDJThAEcOLQ0eAYH5n"></script>
+<script src="js/b39-wordlist_italian.js" crossorigin="use-credentials" integrity="sha384-OqzmnBHzPCGZpinSZ0a05u0Z4feK1GCaM6XLWzjrNbZwDUWl7uVd1LJSqRLZ65Vz"></script>
+<script src="js/b39-jsbip39.js" crossorigin="use-credentials" integrity="sha384-DaVTCqtfOtTwwKyQFxNKLOoqYfq6wO3eQzHtH54bW3XRu3I9EvyuDwMogr0DQYKF"></script>
+<script src="js/b39-biginteger.js" crossorigin="use-credentials" integrity="sha384-wHpGND8Wc3rFBuhr6pYxbGX8nQlQ4UPnpj/kbuyoLIStJB1xVxOO2oq9CITbhf0H"></script>
+<script src="js/b39-zxcvbn.js" crossorigin="use-credentials" integrity="sha384-ASmeUuILt/Ap5mEI/x5r+HHfzL8L0iqc1FaBTQ+LQOz5NnsZ3Hf600a62GmBqB+h"></script>
+<script src="js/b39-entropy.js" crossorigin="use-credentials" integrity="sha384-RPR2N8RXB0sZ7d34nCsHfUOxcehRW+xD/JMToeKMMcln6BgeQy8m+3sDufS8hwpu"></script>
+<script src="js/b39-index.js" crossorigin="use-credentials" integrity="sha384-ZUcXVNeMZ/DMrPFCcFswYPh4rI174PXNbtxTArE+swCblaRKObUoeMfwQc/Ityr4"></script>
+
+
+
+
+<footer>
+  <div class="container">
+    <p>
+      <a href="https://MyTokenWallet.com" target="_blank" rel="noopener">MyTokenWallet.com</a>:
+
+      Open-Source, client-side tool for easily &amp; securely interacting with the Ethereum network.
+
+      Ported to MTW by
+      <a aria-label="zwilla&apos;s github" href="https://github.com/zwilla/mytokenwallet" target="_blank" rel="noopener">zwilla</a>
+      &amp;
+      &#xB7;
+      <a href="https://MyTokenWallet.com" target="_blank" rel="noopener" aria-label="my Token Wallet.com">
+        MyTokenWallet.com
+      </a>
+      &#xB7;
+      <a href="https://github.com/zwilla/mytokenwallet" target="_blank" rel="noopener" aria-label="my Token Wallet github">
+        Github
+      </a>
+      &#xB7;
+      <a href="https://myetherwallet.herokuapp.com/" target="_blank" rel="noopener" aria-label="join our slack">
+        Slack
+      </a>
+      &#xB7;
+      <a href="https://twitter.com/myetherwallet" target="_blank" rel="noopener" aria-label="twitter">
+        Twitter
+      </a>
+      &#xB7;
+      <a href="https://www.facebook.com/MyTokenWallet/" target="_blank" rel="noopener" aria-label="facebook">
+        Facebook
+      </a>
+      &#xB7;
+      <a href="mailto:save@MyTokenWallet.com" target="_blank" rel="noopener" aria-label="email save@MyTokenWallet.com">
+        Email
+      </a>
+
+    <div class="nav-scroll">
+      <ul class="nav-inner">
+        
+        <li ng-repeat="tab in tabNames track by $index" class="nav-item {{tab.name}}" ng-class="{active: $index==gService.currentTab}" ng-show="tab.mtw" ng-click="tabClick($index)"><a tabindex="0" aria-label="nav item: {{tab.name | translate}}" translate="{{tab.name}}"></a>
+        </li>
+        
+        
+          <a href="help.html" target="_blank" rel="noopener">&#x1F198;</a>
+        <a href="security.html" target="_blank" rel="noopener">&#x1F46E;</a>
+        <a href="bulkGenerate.html" target="_blank" rel="noopener">&#x1F4C3;&#x1F4B3;</a>
+        <a href="signMsg.html" target="_blank" rel="noopener">&#x1F3AB;&#x1F50F;</a>
+          <a href="embedded.html" target="_blank" rel="noopener">&#x1F530;</a>
+        <a href="support.html" target="_blank" rel="noopener">&#x260E;&#xFE0F;</a>
+          <img href="https://github.com/Zwilla/mytokenwallet.com/blob/master/Security_and_Privacy_tests_and_results.md" class="img-fill" alt="MyTkoenWallet Site Security" title="Site Security tested with" src="images/SiteSecutiry-MyTokenWallet.com.png">
+      </ul>
+    </div>
+    </p></div>
+  </footer>
+</body>
+</main></html>
+
