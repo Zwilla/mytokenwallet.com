@@ -1,4 +1,4 @@
-## How can proof a Zip or DMG File
+## How to proof a Zip or DMG File
 
 Problem: You have to check by your self, that the downloaded file is
 that what you want.
