@@ -50,7 +50,7 @@
 | 39      | QR-Code scanner                                                                                   | no        | YES! paid service | 5 eth    |
 | 40      | Guided tour for newbies integrated                                                                | no        | YES               | 5 eth    |
 | 41      | overall browser chaching OFF! It is a security risk and I warn if it is on                        | no        | YES               | 5 eth    |
-| 42      | Yubi Key login OFFline and Online possible [read more here](Yubi-Key_Offline_and_Online_2FA.md)   | no        | in progress       | 15 eth         |
+| 42      | Yubi Key login OFFline and Online possible [read more here](docs/Yubi-Key_Offline_and_Online_2FA.md)   | no        | in progress       | 15 eth         |
 
 
 <a rel='nofollow' href='http://www.qrcode-generator.de' border='0'
