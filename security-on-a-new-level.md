@@ -1,4 +1,4 @@
-# New level on security for your Crypto Coin Walltes
+# New level on security for your Crypto Coin Wallets
 
 let's explain: In the wild exist's many server services like amazon,
 heroku, cloudflare and many others where you can host your server. Sure
