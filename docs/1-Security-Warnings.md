@@ -1,6 +1,10 @@
 ## Current Security Warnings
 
 [Read and accept this first!](https://github.com/Zwilla/mytokenwallet.com/blob/master/LICENSE)
+### 05. August 2017
+* [What's wrong with in-browser cryptography?](https://tonyarcieri.com/whats-wrong-with-webcrypto)
+* [PGP-Key-Michael_Padilla-4B331CC6](PGP-Key-Michael_Padilla-4B331CC6.asc)
+
 
 ### 02.August 2017  
 * Do not use Safari browser <= Version 10.1.2 (12603.3.8)
