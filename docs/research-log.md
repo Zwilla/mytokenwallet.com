@@ -18,5 +18,3 @@
 
 ## 02.August 2017
 * [A hacker stole $31M of Ether - how it happened, and what it means for Ethereum](https://goo.gl/gCwUyr)
-
-
