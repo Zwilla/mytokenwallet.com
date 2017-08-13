@@ -1,5 +1,12 @@
 # TOC MyTokenWallet Research
 
+## 13. August 2017
+* https://arxiv.org/pdf/quant-ph/0601115.pdf
+* Trusted computing
+* secure memory
+* private and public key exchange
+
+
 ## 07. August 2017
 * we stop research on some functions of myTokenWallet and MyEtherWallet, because they are more than insecure. It is recommended to stop using
   * unlock wallet **without a**
