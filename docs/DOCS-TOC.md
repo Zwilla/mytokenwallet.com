@@ -1,8 +1,17 @@
 # DOCS Overview
 
+## current Securtiry Warnings
+*  [Security Warnings](1-Security-Warnings.md) read them carefully
+
+## Current logs
+* [Development log](Development-log.md)
+* [Research log](research-log.md)
+* [Work Log](Work-Log.md)
+* [Change log](Change-log.md)
+
+
 ## NEW FEATURES
 * [40 new features](https://github.com/Zwilla/mytokenwallet.com/blob/master/New_Features_on_MyTokenWallet.md)
-* [current Security Wanings](1-Security-Warnings.md)
 
 ## TOKENS
 * [Adding_a_Custom_Token_to_MyTokenWallet](Adding_a_Custom_Token_to_MyTokenWallet.md)
@@ -41,3 +50,6 @@
 ## official README
 * [The README](https://github.com/Zwilla/mytokenwallet.com/blob/master/README.md)
 * [LICENSE and WARRANTY](https://github.com/Zwilla/mytokenwallet.com/blob/master/LICENSE)
+
+
+
