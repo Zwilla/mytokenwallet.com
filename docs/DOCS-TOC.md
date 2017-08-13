@@ -1,6 +1,6 @@
 # DOCS Overview
 
-## current Securtiry Warnings
+## current Security Warnings
 *  [Security Warnings](1-Security-Warnings.md) read them carefully
 
 ## Current logs
