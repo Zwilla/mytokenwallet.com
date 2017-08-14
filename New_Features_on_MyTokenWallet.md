@@ -71,5 +71,5 @@ your smartphone'
 
 ***
 
-[back to TOC](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/DOCS-TOC.md)
+[back to TOC](../docs/DOCS-TOC.md)
 

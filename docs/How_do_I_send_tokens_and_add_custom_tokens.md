@@ -47,5 +47,4 @@ Sending & Adding Tokens
 [A great guide on how to add custom tokens, with photos, can be found here.](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/Adding_a_Custom_Token_to_MyTokenWallet.md)
 
 ***
-[back to TOC](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/DOCS-TOC.md)
-
+[back to TOC](DOCS-TOC.md)

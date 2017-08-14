@@ -8,3 +8,8 @@ producer and guest musician (piano or vocals) for other artists; and concurrentl
 performing with Queen.
 
 * [source](https://en.wikipedia.org/wiki/Freddie_Mercury)
+
+***
+
+[back to TOC](../docs/DOCS-TOC.md)
+

@@ -56,4 +56,4 @@ our knowledge base. A shoutout is nice, but not required. Take advantage
 of this. 
 
 ***
-[Goto our HELP-CENTER](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/DOCS-TOC.md)
+[back to TOC](DOCS-TOC.md)

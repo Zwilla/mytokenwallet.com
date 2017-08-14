@@ -38,4 +38,4 @@ after step 3, and the continue to step 4:
 ***
 * [some more minds here](https://ethereum.stackexchange.com/questions/465/how-to-import-a-plain-private-key-into-geth-or-mist)
 ***
-[back to TOC](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/DOCS-TOC.md)
+[back to TOC](DOCS-TOC.md)

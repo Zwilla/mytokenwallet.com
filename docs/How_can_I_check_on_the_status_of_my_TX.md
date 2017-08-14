@@ -193,4 +193,4 @@ through.
   before if you are using the `ETH (MyTokenWallet)` node.
 
 ***
-[back to TOC](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/DOCS-TOC.md)
+[back to TOC](DOCS-TOC.md)

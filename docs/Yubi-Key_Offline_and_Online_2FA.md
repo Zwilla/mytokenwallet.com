@@ -71,3 +71,7 @@ your Yubikey's one-time-password in your own Node.js scripts. e.g.
 ## How Yubico's OTP works - Yubico OTP library
 
 [![Yubikeys](https://developers.yubico.com/OTP/Libraries/Using_a_library__1.png)](https://developers.yubico.com/OTP/Libraries/Using_a_library__1.png)
+
+
+***
+[back to TOC](DOCS-TOC.md)

@@ -1,6 +1,6 @@
 ![Security Tested by them](https://mytokenwallet.com/images/SiteSecutiry-MyTokenWallet.com.png)
 
-## [DOCS OVERVIEW](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/DOCS-TOC.md)
+## [DOCS OVERVIEW](../docs/DOCS-TOC.md)
 
 ## Donations for running this high-security environment !
 * ETH: [0xD78ec516C31A0fcd22D3CC6DC454FB87d686444e](https://www.mytokenwallet.com/#send-transaction)
@@ -36,4 +36,4 @@ Let me know, if you have issues. Happy testing.
 more later,,,,,
 
 ## TOC My Token Wallet
-[TOC MyTokenWallet Docs](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/DOCS-TOC.md)
+[TOC MyTokenWallet Docs](../docs/DOCS-TOC.md)

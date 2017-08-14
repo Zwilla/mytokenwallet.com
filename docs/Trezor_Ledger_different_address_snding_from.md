@@ -42,4 +42,4 @@ Client Side - Mnemonic Phrase Wallet Generator for many Coins like:
 
 
 ***
-[back to TOC](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/DOCS-TOC.md)
+[back to TOC](DOCS-TOC.md)

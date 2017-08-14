@@ -39,3 +39,6 @@ the paranoid version of MyEtherWallet.
 | 3   | 2017-July    | 2017-November  | App for Mircosoft Windows                         | [ ] in progress |
 | 4   | 2017-July    | 2017-September | App for Ubuntu, Debian and other Linux OS's       | [ ] in progress |
 | 5   | 2017-June    | 2018 Q1        | Java-Card for creating new wallets like Nitrokey  | [ ] in progress |
+
+***
+[back to TOC](DOCS-TOC.md)

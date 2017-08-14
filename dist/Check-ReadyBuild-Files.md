@@ -31,3 +31,6 @@ https://jswebcrypto.azurewebsites.net/demo.html#/hash
 |:----|:---------------------------------------------------------|:----------------|:---------|:-------|:-----------------------------------------------------------------------------------------|
 | Win | [MyTokenWallet.com-V4.0.2.zip](https://goo.gl/cmCyCh)    | application/zip | 7611959  | 421 ms | MD5: `94646dbe4a298343ac5600b530853a36` SHA1: `0a780e899cbe7bdac81b491ba5930436b2c5602b` |
 | MAC | [MyTokenWallet.com.zip-4.0.2.dmg](https://goo.gl/923G5E) |                 | 17011200 | 840 ms | MD5: `95fc8ecd7602e466b0e52967935f2af4` SHA1: `f69b2a66bdf322e59bc532b78ad547c8ccb690f8` |
+
+***
+[back to TOC](../docs/DOCS-TOC.md)

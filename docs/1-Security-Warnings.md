@@ -6,6 +6,11 @@
   online or has the possibility to enter a network. This key has a trust level of ZERO!
 * Never copy and past your key! Nowhere! Never!
 
+### 11. August 2017
+* https://nodejs.org/en/blog/vulnerability/july-2017-security-releases/
+The vulnerability has been patched upstream and snapshots have been re-enabled in 8.3.0
+
+
 ### 07. August 2017
 
 * we stop research on some functions of myTokenWallet and MyEtherWallet,
@@ -51,6 +56,4 @@
 
 ***
 
-[back to TOC](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/DOCS-TOC.md)
-
-
+[back to TOC](DOCS-TOC.md)
