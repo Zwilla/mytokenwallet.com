@@ -1,5 +1,18 @@
 ## Current Security Warnings
 
+### 17. August 2017
+* uninstall MetaMask Wallet, this software wallet is injecting inpage.js:36 into
+  MyTokenWallet and MyEtherWallet !
+    * proof 1: ![](https://goo.gl/pxaav2)
+    * proof 2: ![](https://goo.gl/8RYS4j)
+
+### 16. August 2017
+* New firmware update Trezor Wallet
+    * https://blog.trezor.io/trezor-firmware-security-update-1-5-2-5ef1b6f13fed
+    * https://github.com/trezor/connect/issues/73
+    * Firmware upgrade to 1.5.2
+
+
 ### 13. August 2017
 
 * if a private key was created on an it-system or computer which is
