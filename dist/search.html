@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="sitelinkssearchbox" />
+    <link rel="canonical" href="https://mytokenwallet.com" />
+    <meta name="description" content="Searchpage for myTokenWallet - full text search over all documents and pages" />
+    <title>Site Search - MY-Token-Wallet</title>
+
+</head>
+<body>
+
+<div id="tserach"></div>
+
+<script>
+    var myCallback = function() {
+        if (document.readyState == 'complete') {
+            // Document is ready when CSE element is initialized.
+            // Render an element with both search box and search results in div with id 'tserach'.
+            google.search.cse.element.render(
+                {
+                    div: "tserach",
+                    tag: 'search'
+                });
+        } else {
+            // Document is not ready yet, when CSE element is initialized.
+            google.setOnLoadCallback(function() {
+                // Render an element with both search box and search results in div with id 'tserach'.
+                google.search.cse.element.render(
+                    {
+                        div: "tserach",
+                        tag: 'search'
+                    });
+            }, true);
+        }
+    };
+
+
+    window.__gcse = {
+        parsetags: 'explicit',
+        callback: myCallback
+    };
+
+    (function() {
+        var cx = '008611793103182692483:avoliblcnlg';
+        var gcse = document.createElement('script'); gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.ssl = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+    })();
+</script>
+
+<gcse:search
+        autoSearchOnLoad
+        autoCompleteMaxCompletions="5"
+        autoCompleteMaxPromotions="5"
+        autoCompleteMatchType='any'
+        enableHistory="true"
+        gname="storesearch"
+        enableImageSearch
+        webSearchSafesearch="off"
+        adclient="pub-9710983051758804"
+
+>
+    <gcse:searchresults
+            refinementStyle="link"
+            gname="storesearch"
+    >
+
+    </gcse:searchresults>
+
+</gcse:search>
+
+<gcse:searchbox enableHistory="true" autoCompleteMaxCompletions="5" autoCompleteMatchType='any'>
+    <gcse:searchresults refinementStyle="link">
+
+    </gcse:searchresults>
+</gcse:searchbox>
+
+
+
+</body>
+</html>

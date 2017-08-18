@@ -5,6 +5,9 @@
   MyTokenWallet and MyEtherWallet !
     * proof 1: ![](https://goo.gl/pxaav2)
     * proof 2: ![](https://goo.gl/8RYS4j)
+    * proof 3: ![](https://goo.gl/o2rA38)
+
+read more about: [0-Trust](https://www.slideshare.net/professorbanafa/what-is-zero-trust-model-of-information-security)
 
 ### 16. August 2017
 * New firmware update Trezor Wallet
