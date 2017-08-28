@@ -1,0 +1,57 @@
+
+body
+{
+
+  font-size: 100%;
+
+  background: #1B8CB6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #1CB5E0, #1B8CB6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #1CB5E0, #1B8CB6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+div.main
+{
+  /* centered div */
+  margin: 20px auto;
+  padding: 15px 1.8%;
+
+  min-width: 50px;
+  max-width: 800px;
+
+  border: 1px solid #101010;
+  border-radius: 8px;
+
+  background: #1B8CB6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #1CB5E0, #1B8CB6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #1CB5E0, #1B8CB6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+h1
+{
+  color: #452311;
+  text-shadow: 1px 1px white;
+  margin-bottom: 0;
+}
+
+a:link    { text-decoration: none; color: #0000CC; }
+a:visited { color: #0000AA; }
+a:hover   { color: #0000FF; }
+a:active  {  }
+
+
+ul.contact li
+{
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+#output      { font-size: 90%;  padding-top: 2%;padding-left: 2%;padding-bottom: 1%;padding-right: 1%;}
+.strength1   { background-color: #FF9999; border-radius: 8px; border: 1px solid #101010;} /* red */
+.strength2   { background-color: #FFCC66; border-radius: 8px; border: 1px solid #101010;} /* orange */
+.strength3   { background-color: #FFFF99; border-radius: 8px; border: 1px solid #101010;} /* yellow */
+.strength4   { background-color: #CCFF99; border-radius: 8px; border: 1px solid #101010;} /* pale green */
+.strength5   { background-color: #99FF99; border-radius: 8px; border: 1px solid #101010;} /* green */
+
+input {
+  width: 80%;
+}
