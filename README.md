@@ -8,6 +8,8 @@
 * BTC: [19KoacYJn4zwNU5u2XVgbUDGLZytuD3uA7](https://www.coinbase.com/checkouts/e8a5a4c74c651d4c4f8db10f8f9ad6c3)
 
 ## Current State:
+* very soon: desktop apps for Microsoft Windows, debian/ubuntu and Apple OSX
+     * just waiting for styleguide guys
 * Testing and bugfixing, but it works as MEW it did.
 * Working on Angular.js CSP security
 * integrating every commit from MEW - every day = 100% pari!
