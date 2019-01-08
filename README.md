@@ -1,4 +1,7 @@
-
+## TLS 1.3
+* Safari:
+    * sudo su - root && defaults write /Library/Preferences/com.apple.networkd tcp_connect_enable_tls13 1
+* Opera, Firefox, Brave, Chrome just upgrade
 
 ## [DOCS OVERVIEW](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/DOCS-TOC.md)
 * [current Security Warnings](https://github.com/Zwilla/mytokenwallet.com/blob/master/docs/1-Security-Warnings.md)
